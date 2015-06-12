@@ -5,10 +5,10 @@ infrastructure.
 
 ### Repository structure
 
-files - files and templates for use in playbooks/tasks
+*files* - files and templates for use in playbooks/tasks
       - subdirs for specific tasks/dirs highly recommended
 
-inventory - where the inventory and additional vars is stored
+*inventory* - where the inventory and additional vars is stored
           - All files in this directory in ini format
           - added together for total inventory
   group_vars:
@@ -16,9 +16,9 @@ inventory - where the inventory and additional vars is stored
   host_vars:
           - per host variables set here in a file per host
 
-library - library of custom local ansible modules
+*library* - library of custom local ansible modules
 
-playbooks - collections of plays we want to run on systems
+*playbooks* - collections of plays we want to run on systems
 
   groups: groups of hosts configured from one playbook.
   
@@ -26,9 +26,9 @@ playbooks - collections of plays we want to run on systems
 
   manual: playbooks that are only run manually by an admin as needed.
 
-tasks - snippets of tasks that should be included in plays
+*tasks* - snippets of tasks that should be included in plays
 
-roles - specific roles to be use in playbooks.
+*roles* - specific roles to be use in playbooks.
         Each role has it's own files/templates/vars
 
 master.yml - This is the master playbook, consisting of all
@@ -38,7 +38,7 @@ master.yml - This is the master playbook, consisting of all
              This playbook is usefull for making changes over
              multiple groups/hosts usually with -t (tag).
 
-### Paths ==
+### Paths
 
 public path for everything is:
 
