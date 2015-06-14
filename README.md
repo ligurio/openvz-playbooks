@@ -31,32 +31,26 @@ infrastructure.
 *roles* - specific roles to be use in playbooks.
         Each role has it's own files/templates/vars
 
-master.yml - This is the master playbook, consisting of all
+*master.yml* - This is the master playbook, consisting of all
              current group and host playbooks. Note that the
              daily cron doesn't run this, it runs even over
              playbooks that are not yet included in master.
              This playbook is usefull for making changes over
              multiple groups/hosts usually with -t (tag).
 
-### Paths
-
-public path for everything is:
-
- /srv/web/infra/ansible
-
-private path - which is sysadmin-main accessible only is:
-
- /srv/private/ansible
+### Using
 
 In general to run any ansible playbook you will want to run:
 
+```
 sudo -i ansible-playbook playbook.yml
+```
 
 ### Scheduled check-diff
 
 Every night a cron job runs over all playbooks under playbooks/{groups}{hosts}
 with the ansible --check --diff options. A report from this is sent to
-sysadmin-logs. In the ideal state this report would be empty.
+sysadmins. In the ideal state this report would be empty.
 
 ### Idempotency
 
