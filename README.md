@@ -35,15 +35,22 @@ infrastructure.
              current group and host playbooks. Note that the
              daily cron doesn't run this, it runs even over
              playbooks that are not yet included in master.
-             This playbook is usefull for making changes over
+             This playbook is useful for making changes over
              multiple groups/hosts usually with -t (tag).
 
 ### Using
 
+Try out availability of servers:
+
+```
+$ ansible all -i production  -a "/bin/echo hello"
+```
+
 In general to run any ansible playbook you will want to run:
 
 ```
-sudo -i ansible-playbook playbook.yml
+$ ansible-playbook site.yml -i stage
+$ ansible-playbook site.yml -i stage --limit mirrors
 ```
 
 ### Scheduled check-diff
