@@ -1,0 +1,14 @@
+---
+# tasks to setup a download server
+
+- name: add upload group
+  group: name=upload gid=106 system=yes state=present
+
+- name: add upload user
+  user: name=upload uid=106 gid=106 home=/var/www/html comment="OpenVZ download server" createhome=yes system=yes shell=/bin/bash
+
+- name: add apache to upload group
+  user: name=apache append=yes groups=upload
+
+- name: copy the download http config file
+  copy: src=download.conf dest=/etc/httpd/conf.d/download.conf
