@@ -1,0 +1,35 @@
+---
+- hosts: mirrors
+#  roles:
+#    - common
+
+# https://src.openvz.org/projects/OVZ/repos/openvz-mirrors/browse/README.md
+
+  tasks:
+
+  - name: install packages
+    sudo: yes
+    yum: name={{ item }} state=present
+    with_items:
+      - git
+      - mirmon
+
+  - name: yum -y {{ yumcommand }}
+    command: yum -y {{ yumcommand }}
+    async: 7200
+    poll: 15
+
+#  - name: TODO: setup apache for mirmon
+#    command:
+
+  - name: create mirmon results directory
+    command: mkdir -p /var/www/mirmon
+
+  - name: checkout git repo with sources
+    git: repo=https://src.openvz.org/scm/ovz/openvz-mirrors.git dest=/home/sergeyb/ovz
+
+  - name: generate timestamp via crontab
+    cron: name="generate timestamp" minute="00" job="$(/bin/date +\%s > /var/www/html/timestamp)"
+
+  - name: update mirror lists via crontab
+    cron: name="check mirrors" minute="00" job="cd /home/sergeyb/ovz/; git pull && make"
