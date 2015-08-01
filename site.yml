@@ -1,0 +1,12 @@
+---
+
+- include: playbooks/docs.yml
+- include: playbooks/download.yml
+- include: playbooks/forum.yml
+- include: playbooks/mailman.yml
+- include: playbooks/mirrors.yml
+- include: playbooks/planet.yml
+- include: playbooks/stats.yml
+- include: playbooks/vault.yml
+- include: playbooks/wiki.yml
+- include: playbooks/www.yml
