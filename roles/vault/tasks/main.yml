@@ -1,0 +1,11 @@
+---
+# tasks to setup a vault server
+
+- name: add vault group
+  group: name=vault gid=106 system=yes state=present
+
+- name: add vault user
+  user: name=vault uid=106 gid=106 home=/var/www/html comment="OpenVZ vault server" createhome=yes system=yes shell=/bin/bash
+
+- name: add apache to vault group
+  user: name=apache append=yes groups=vault

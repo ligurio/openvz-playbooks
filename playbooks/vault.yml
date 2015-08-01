@@ -1,0 +1,8 @@
+---
+- hosts: vault
+  roles:
+    - common
+    - vault
+
+#  handlers:
+#  - include: "{{ handlers }}/restart_services.yml"
