@@ -1,0 +1,39 @@
+---
+- hosts: planet
+
+# https://src.openvz.org/projects/OVZ/repos/openvz-planet/browse/README.md
+
+  tasks:
+
+  - name: install packages
+    sudo: yes
+    yum: name={{ item }} state=present
+    with_items:
+      - git
+      - rawdog
+
+  - name: yum -y {{ yumcommand }}
+    command: yum -y {{ yumcommand }}
+    async: 7200
+    poll: 15
+
+#  - name: TODO: setup apache
+#    command: TODO
+
+  - name: checkout git repo with sources
+    git: repo=https://src.openvz.org/scm/ovz/openvz-planet.git dest=/var/www/planet.openvz.org/
+
+  - name: create user group
+    sudo: yes
+    command: groupadd pub
+
+  - name: group pub owns planet directory
+    sudo: yes
+    command: chgroup pub /var/www/planet.openvz.org
+
+  - name: add user to group
+    sudo: yes
+    user: name=sergeyb groups=pub append=yes
+
+  - name: setup crontab
+    cron: name="update planet feeds" minute="00" job="cd /var/www/planet.openvz.org && git pull && make"
