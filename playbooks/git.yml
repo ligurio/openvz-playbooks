@@ -1,0 +1,8 @@
+---
+- hosts: git
+  roles:
+    - common
+    - git
+
+#  handlers:
+#  - include: "{{ handlers }}/restart_services.yml"
