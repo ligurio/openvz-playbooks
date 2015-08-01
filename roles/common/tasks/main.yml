@@ -1,0 +1,20 @@
+---
+
+#
+# This is the base role for all machines.
+# Things here are things we want to do to every machine no matter what.
+#
+
+- name: dist pkgs to install
+  yum: state=present name={{ item }}
+  with_items:
+   - "{{ base_pkgs_inst }}"
+
+- name: install ntp.conf
+  copy: src=ntp.conf dest=/etc/ntp.conf
+
+- name: start ntpd
+  service: name=ntpd state=running enabled=true
+
+- name: update motd
+  copy: src=motd dest=/etc/motd
