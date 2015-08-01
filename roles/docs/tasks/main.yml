@@ -21,11 +21,11 @@
     - xerces-j2
     - docbook5-schemas
 
-  - name: install git package
-    yum: name=git state=latest
+- name: install git package
+  yum: name=git state=latest
 
 - name: checkout git repo with sources
   git: repo=https://src.openvz.org/scm/ovz/vz-docs.git dest=/home/sergeyb/vz-docs
 
-  - name: setup crontab
-    cron: name="publish doc" minute="00" job="cd ~/vz-docs/ && git pull && make && make publish"
+- name: setup crontab
+  cron: name="publish doc" minute="00" job="cd ~/vz-docs/ && git pull && make && make publish"
