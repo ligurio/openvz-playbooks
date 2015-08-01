@@ -1,0 +1,25 @@
+---
+language: php
+
+php:
+  - 5.4
+
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq python-apt python-pycurl
+
+install:
+  - pip install ansible
+
+script:
+  - echo localhost > hosts
+  - ansible-playbook -i hosts --syntax-check --list-tasks site.yml
+  # Check php script syntax
+  - bash .travis.phplint.sh
+
+notifications:
+  email:
+    recipients:
+      - sergeyb@openvz.org
+    on_success: change
+    on_failure: always
