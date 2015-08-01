@@ -1,0 +1,41 @@
+---
+- hosts: docs
+
+  tasks:
+
+  - name: install packages required for docs compilation
+    sudo: yes
+    yum: name={{ item }} state=present
+    with_items:
+      - asciidoc
+      - fop
+      - docbook5-style-xsl-extensions
+      - docbook5-style-xsl
+      - xerces-j2
+      - docbook5-schemas
+
+  - name: install git
+    yum: name=git state=latest
+
+  - name: yum -y {{ yumcommand }}
+    command: yum -y {{ yumcommand }}
+    async: 7200
+    poll: 15
+
+  - name: checkout git repo with sources
+    git: repo=https://src.openvz.org/scm/ovz/vz-docs.git dest=/home/sergeyb/vz-docs
+
+  - name: create user group
+    sudo: yes
+    command: groupadd pub
+
+  - name: group pub owns www root
+    sudo: yes
+    command: chgroup pub /var/www/html
+
+  - name: add user to group
+    sudo: yes
+    user: name=sergeyb groups=pub append=yes
+
+  - name: setup crontab
+    cron: name="publish doc" minute="00" job="cd ~/vz-docs/ && git pull && make && make publish"
