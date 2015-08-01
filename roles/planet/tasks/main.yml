@@ -1,0 +1,27 @@
+---
+# tasks to setup a planet server
+# see https://src.openvz.org/projects/OVZ/repos/openvz-planet/browse/README.md
+
+- name: add planet group
+  group: name=planet-user gid=104 system=yes state=present
+
+- name: add planet user
+  user: name=planet-user uid=104 gid=104 home=/var/www/planet.openvz.org comment="People Planet Eater" createhome=yes system=yes shell=/bin/bash
+
+- name: add apache to planet group
+  user: name=apache append=yes groups=planet-user
+
+- name: install the planet packages
+  yum:  pkg={{item}} state=present
+  with_items:
+    - rawdog
+    - git
+
+- name: checkout git repo with sources
+  git: repo=https://src.openvz.org/scm/ovz/openvz-planet.git dest=/var/www/planet.openvz.org/
+
+- name: setup crontab
+  cron: name="update planet feeds" minute="00" job="cd /var/www/planet.openvz.org && git pull && make"
+
+- name: copy the planet http config file
+  copy: src=planet.conf dest=/etc/httpd/conf.d/planet.conf
