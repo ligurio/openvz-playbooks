@@ -1,0 +1,8 @@
+---
+- hosts: download
+  roles:
+    - common
+    - download
+
+#  handlers:
+#  - include: "{{ handlers }}/restart_services.yml"
