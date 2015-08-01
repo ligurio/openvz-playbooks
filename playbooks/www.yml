@@ -1,0 +1,9 @@
+---
+- hosts: www
+  roles:
+    - common
+    - apache
+    - www
+
+#  handlers:
+#  - include: "{{ handlers }}/restart_services.yml"

@@ -1,0 +1,5 @@
+---
+# tasks to setup an OpenVZ web server
+
+- name: copy the www config file
+  copy: src=openvz.org.conf dest=/etc/httpd/conf.d/openvz.org.conf
