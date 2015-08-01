@@ -1,0 +1,8 @@
+---
+- hosts: store
+  roles:
+    - common
+    - store
+
+#  handlers:
+#  - include: "{{ handlers }}/restart_services.yml"

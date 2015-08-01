@@ -1,0 +1,5 @@
+---
+# tasks to setup redirects to OpenVZ store
+
+- name: copy the download http config file
+  copy: src=store.conf dest=/etc/httpd/conf.d/store.conf
