@@ -2,6 +2,7 @@
 - hosts: docs
   roles:
     - common
+    - apache
     - docs
 
 #  handlers:

@@ -2,6 +2,7 @@
 - hosts: git
   roles:
     - common
+    - apache
     - git
 
 #  handlers:

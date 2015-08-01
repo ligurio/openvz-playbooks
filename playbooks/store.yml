@@ -2,6 +2,7 @@
 - hosts: store
   roles:
     - common
+    - apache
     - store
 
 #  handlers:

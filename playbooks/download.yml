@@ -2,6 +2,7 @@
 - hosts: download
   roles:
     - common
+    - apache
     - download
 
 #  handlers:
