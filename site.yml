@@ -3,6 +3,7 @@
 - include: playbooks/docs.yml
 - include: playbooks/download.yml
 - include: playbooks/forum.yml
+- include: playbooks/git.yml
 - include: playbooks/mailman.yml
 - include: playbooks/mirrors.yml
 - include: playbooks/planet.yml
