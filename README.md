@@ -73,4 +73,7 @@ that it could be run at ANY TIME. Always make sure the checked in state
 is the desired state. Always test changes when they land so they don't
 surprise you later.
 
-[Fedora Infrastructure](https://infrastructure.fedoraproject.org/cgit/ansible.git/)
+
+### Infrastructure of other open source projects
+
+* Fedora: [code](https://infrastructure.fedoraproject.org/cgit/ansible.git/), [documentation]( https://infrastructure.fedoraproject.org/infra/docs/), [site](https://fedorahosted.org/fedora-infrastructure/)
