@@ -77,3 +77,4 @@ surprise you later.
 ### Infrastructure of other open source projects
 
 * Fedora Linux: [code](https://infrastructure.fedoraproject.org/cgit/ansible.git/), [documentation]( https://infrastructure.fedoraproject.org/infra/docs/), [site](https://fedorahosted.org/fedora-infrastructure/)
+* Gentoo Linux: [documentation](http://mirror.omnilance.com/centos/)
