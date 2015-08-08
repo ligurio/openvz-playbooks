@@ -1,6 +1,8 @@
+[download-mirror]
+eu.download.openvz.org
+
 [download]
 download.openvz.org
-eu.download.openvz.org
 
 [forum]
 forum.openvz.org

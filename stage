@@ -1,6 +1,9 @@
 [download]
 ansible.stage
 
+[download-mirror]
+ansible.stage
+
 [forum]
 ansible.stage
 
