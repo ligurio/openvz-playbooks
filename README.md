@@ -76,7 +76,9 @@ surprise you later.
 
 ### Infrastructure of other open source projects
 
-* Fedora Linux: [code](https://infrastructure.fedoraproject.org/cgit/ansible.git/), [documentation]( https://infrastructure.fedoraproject.org/infra/docs/), [site](https://fedorahosted.org/fedora-infrastructure/)
+* Fedora Linux: [code](https://infrastructure.fedoraproject.org/cgit/ansible.git/), [documentation]( https://infrastructure.fedoraproject.org/infra/docs/), [site](https://fedorahosted.org/fedora-infrastructure/), [wiki](http://fedoraproject.org/wiki/Infrastructure/GettingStarted)
 * Gentoo Linux: [documentation](http://mirror.omnilance.com/centos/)
 * Wikimedia: [wiki](https://wikitech.wikimedia.org/wiki/Main_Page), [code](https://github.com/wikimedia/operations-puppet), [blog](http://blog.wikimedia.org/2011/09/19/ever-wondered-how-the-wikimedia-servers-are-configured/)
 * OpenStreetMap: [wiki](http://wiki.openstreetmap.org/wiki/Servers)
+* OpenStack: [wiki](http://docs.openstack.org/infra/system-config/), [code](https://github.com/openstack-infra)
+* Mageia Linux: [code](http://gitweb.mageia.org/infrastructure/puppet/), [wiki](https://wiki.mageia.org/en/Sysadmin_Team)
