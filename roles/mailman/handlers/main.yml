@@ -1,0 +1,6 @@
+---
+- name: restart mailman
+  action: service name=mailman state=restarted
+
+- name: reload apache
+  action: service name=httpd state=reloaded

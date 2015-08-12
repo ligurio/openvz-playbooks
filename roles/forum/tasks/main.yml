@@ -1,0 +1,31 @@
+---
+# tasks to setup a doc server
+# see https://src.openvz.org/projects/OVZ/repos/vz-docs/browse/README.md
+
+- name: add doc-user group
+  group: name=doc-user gid=104 system=yes state=present
+
+- name: add doc user
+  user: name=doc-user uid=104 gid=104 home=/var/www/html comment="OpenVZ docs" createhome=yes system=yes shell=/bin/bash
+
+- name: add apache to docs group
+  user: name=apache append=yes groups=doc-user
+
+- name: install the doc packages
+  yum:  pkg={{item}} state=present
+  with_items:
+    - asciidoc
+    - fop
+    - docbook5-style-xsl-extensions
+    - docbook5-style-xsl
+    - xerces-j2
+    - docbook5-schemas
+
+- name: install git package
+  yum: name=git state=latest
+
+- name: checkout git repo with sources
+  git: repo=https://src.openvz.org/scm/ovz/vz-docs.git dest=/home/sergeyb/vz-docs
+
+- name: setup crontab
+  cron: name="publish doc" minute="00" job="cd ~/vz-docs/ && git pull && make && make publish"

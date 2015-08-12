@@ -1,0 +1,22 @@
+---
+- hosts: forum
+
+# not tested yet
+# see http://fudforum.org/doc/d/manual.html#installation
+
+  tasks:
+
+  - name: install packages
+    sudo: yes
+    yum: name={{ item }} state=present
+    with_items:
+      - mysql
+      - php
+
+  - name: yum -y {{ yumcommand }}
+    command: yum -y {{ yumcommand }}
+    async: 7200
+    poll: 15
+
+  - name: create dir /var/www/html/FUDforum
+    command: mkdir /var/www/FUDforum/

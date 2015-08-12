@@ -1,0 +1,20 @@
+---
+# tasks to setup a mirror download server with http access
+
+- name: add openvz-mirror group
+  group: name=openvz-mirror system=yes state=present
+
+- name: add openvz-mirror user
+  user: name=openvz-mirror home=/var/www/html/download.openvz.org comment="OpenVZ download server" createhome=yes system=yes
+
+- name: add apache to openvz-mirror group
+  user: name=apache append=yes groups=openvz-mirror
+
+- name: copy the openvz mirror http config file
+  copy: src=openvz-mirror.conf dest=/etc/httpd/conf.d/openvz-mirror.conf
+
+- name: set apache running/enabled
+  service: name=httpd enabled=yes
+  ignore_errors: true
+  notify:
+  - restart apache

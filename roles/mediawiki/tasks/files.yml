@@ -1,0 +1,28 @@
+- name: Create mediawiki log directories
+  file: path={{item}} state=directory owner=mediawiki
+  with_items:
+    - /var/log/mediawiki/
+    - /var/log/mediawiki/debuglogs/
+
+- name: Delete old mediawiki files
+  command: rm {{item}} removes={{item}}
+  with_items:
+    - /root/notify_irc.sh
+
+- name: Copy MediaWiki settings from templates
+  template: src={{item}} dest=/srv/mediawiki/w/{{item|basename|replace('.j2','')}}
+  with_fileglob:
+    - ./localsettings/*.php.j2
+  sudo: yes
+  sudo_user: mediawiki
+  notify:
+    - Rebuild localisation cache
+
+- name: Copy MediaWiki settings from files
+  copy: src={{item}} dest=/srv/mediawiki/w/{{item|basename}}
+  with_fileglob:
+    - ./localsettings/*.php
+  sudo: yes
+  sudo_user: mediawiki
+  notify:
+    - Rebuild localisation cache
