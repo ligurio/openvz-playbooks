@@ -1,5 +1,3 @@
 ---
-handlers: /Users/sergeyb/source/openvz-playbooks/handlers
 
-# sudo: False by default so ansible doesn't try and check for it and hang
 #sudo: False
