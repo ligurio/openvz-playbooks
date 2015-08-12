@@ -1,0 +1,9 @@
+---
+- hosts: forum
+  roles:
+    - common
+    - apache
+    - forum
+
+#  handlers:
+#  - include: "{{ handlers }}/restart_services.yml"

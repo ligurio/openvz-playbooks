@@ -1,0 +1,25 @@
+---
+- hosts: stats
+
+# not tested yet
+# https://git.sw.ru/scm/vs/vzstats-server.git
+
+  tasks:
+
+  - name: install vzstats-server rpm package
+    sudo: yes
+    command: rpm -qi PATH_TO_PACKAGE
+
+  - name: install additional packages
+    sudo: yes
+    yum: name=mysql state=latest
+
+  - name: yum -y {{ yumcommand }}
+    command: yum -y {{ yumcommand }}
+    async: 7200
+    poll: 15
+
+# see https://git.sw.ru/projects/VS/repos/vzstats-server/browse/INSTALL
+  - name: database setup
+    command: mysql -c "CREATE DATABASE stats CHARACTER SET = utf8_general_ci;"
+    command: mysql -c "CREATE USER 'stats'@'localhost' IDENTIFIED BY 'very secret password';"

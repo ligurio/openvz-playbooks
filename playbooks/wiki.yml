@@ -1,0 +1,19 @@
+---
+- hosts: wiki
+  roles:
+#    - common
+    - mediawiki
+
+  tasks:
+
+  - name: install packages
+    sudo: yes
+    yum: name={{ item }} state=present
+    with_items:
+      - mysql
+      - php
+
+  - name: yum -y {{ yumcommand }}
+    command: yum -y {{ yumcommand }}
+    async: 7200
+    poll: 15
