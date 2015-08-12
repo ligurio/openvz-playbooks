@@ -1,3 +1,6 @@
+[docs]
+docs.openvz.org
+
 [download-mirror]
 eu.download.openvz.org
 
@@ -13,7 +16,7 @@ www.openvz.org
 [mailman]
 lists.openvz.org
 
-[mirrors]
+[mirmon]
 download.openvz.org
 
 [planet]

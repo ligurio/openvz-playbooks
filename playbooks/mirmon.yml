@@ -1,9 +1,9 @@
 ---
-- hosts: mirrors
+- hosts: mirmon
   roles:
     - common
     - apache
-    - mirrors
+    - mirmon
 
 #  handlers:
 #  - include: "{{ handlers }}/restart_services.yml"
