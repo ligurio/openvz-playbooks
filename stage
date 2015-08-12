@@ -5,7 +5,7 @@ s156.qa.sw.ru
 ansible.stage
 
 [download-mirror]
-ansible.stage
+s156.qa.sw.ru
 
 [forum]
 ansible.stage

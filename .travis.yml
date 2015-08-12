@@ -7,9 +7,13 @@ php:
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq python-apt python-pycurl
+  - sudo apt-get install software-properties-common
+  - sudo apt-add-repository ppa:ansible/ansible
+  - sudo apt-get update
+  - sudo apt-get install ansible
 
 install:
-  - pip install ansible
+  - sudo pip install ansible
 
 script:
   - echo localhost > hosts
