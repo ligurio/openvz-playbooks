@@ -34,7 +34,10 @@ store.openvz.org
 [vault]
 vault.openvz.org
 
-[wiki]
+[wiki-openvz]
+wiki.openvz.org
+
+[wiki-criu]
 wiki.openvz.org
 
 [www]
