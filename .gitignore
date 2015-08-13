@@ -1,2 +1,4 @@
 hosts
 TODO
+playbooks/roles/wiki-openvz/files/LocalSettings.php
+playbooks/roles/wiki-criu/files/LocalSettings.php
