@@ -3,10 +3,10 @@
 # see https://src.openvz.org/projects/OVZ/repos/openvz-mirrors/browse/README.md
 
 - name: add mirrors group
-  group: name=mirrors-user gid=105 system=yes state=present
+  group: name=mirrors-user state=present
 
 - name: add mirrors user
-  user: name=mirrors-user uid=105 gid=105 home=/var/www/mirrors.openvz.org comment="Mirrors Monitoring" createhome=yes system=yes shell=/bin/bash
+  user: name=mirrors-user home=/var/www/mirrors.openvz.org comment="Mirrors Monitoring" createhome=yes system=yes
 
 - name: add apache to mirrors group
   user: name=apache append=yes groups=mirrors-user
@@ -17,17 +17,17 @@
     - mirmon
     - git
 
+- name: create mirmon results directory
+  command: mkdir -p /var/www/mirrors.openvz.org
+
 - name: checkout git repo with sources
-  git: repo=https://src.openvz.org/scm/ovz/openvz-mirrors.git dest=/home/sergeyb/ovz
+  git: repo=https://src.openvz.org/scm/ovz/openvz-mirrors.git dest=/var/www/mirrors.openvz.org
 
 - name: generate timestamp via crontab
   cron: name="generate timestamp" minute="00" job="$(/bin/date +\%s > /var/www/html/timestamp)"
 
 - name: update mirror lists via crontab
-  cron: name="check mirrors" minute="00" job="cd /home/sergeyb/ovz/; git pull && make"
+  cron: name="check mirrors" minute="00" job="cd /var/www/mirrors.openvz.org/ && git pull && make"
 
 - name: copy the mirrors http config file
   copy: src=mirrors.conf dest=/etc/httpd/conf.d/mirrors.conf
-
-- name: create mirmon results directory
-  command: mkdir -p /var/www/mirmon

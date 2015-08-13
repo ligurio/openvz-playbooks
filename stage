@@ -1,11 +1,14 @@
+[bugzilla]
+ansible.stage
+
 [docs]
-s156.qa.sw.ru
+ansible.stage
 
 [download]
 ansible.stage
 
 [download-mirror]
-s156.qa.sw.ru
+ansible.stage
 
 [forum]
 ansible.stage
@@ -31,8 +34,14 @@ ansible.stage
 [vault]
 ansible.stage
 
-[wiki]
+[wiki-openvz]
+ansible.stage
+
+[wiki-criu]
 ansible.stage
 
 [www]
+ansible.stage
+
+[openvz-templates]
 ansible.stage

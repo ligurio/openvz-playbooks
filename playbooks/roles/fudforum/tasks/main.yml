@@ -1,0 +1,5 @@
+# not tested yet
+# see http://fudforum.org/doc/d/manual.html#installation
+
+  - name: create dir /var/www/html/FUDforum
+    command: mkdir -p /var/www/FUDforum/

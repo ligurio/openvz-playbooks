@@ -11,5 +11,6 @@
 - include: playbooks/stats.yml
 - include: playbooks/store.yml
 - include: playbooks/vault.yml
-- include: playbooks/wiki.yml
+- include: playbooks/wiki-openvz.yml
+- include: playbooks/wiki-criu.yml
 - include: playbooks/www.yml

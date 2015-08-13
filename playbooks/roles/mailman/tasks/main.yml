@@ -11,7 +11,6 @@
   with_items:
   - mailman
 
-
 #
 # Initialize mailman (must be done after settings up the DBs)
 #
@@ -59,25 +58,11 @@
 
 #
 # Logging
-#
-- name: hyperkitty logging -- directory
-  file: path=/var/log/hyperkitty state=directory
-        owner=root group=apache mode=2775
-- name: hyperkitty logging -- file creation
-  copy: content="" dest=/var/log/hyperkitty/hyperkitty.log
-        force=no
-- name: hyperkitty logging -- file permissions
-  file: path=/var/log/hyperkitty/hyperkitty.log state=file
-        owner=root group=apache mode=664
-- name: hyperkitty logging -- rotation
-  copy: src=hyperkitty.logrotate.conf
-        dest=/etc/logrotate.d/hyperkitty
 
 ## Postfix
 #- name: create the postfix aliases
 #  command: su mailman -s /bin/sh -c "mailman3 aliases"
 #           creates=/var/lib/mailman3/data/postfix_lmtp.db
-
 
 # Start services
 - name: start services

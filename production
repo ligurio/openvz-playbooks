@@ -1,3 +1,6 @@
+[bugzilla]
+bugzilla.openvz.org
+
 [docs]
 docs.openvz.org
 
@@ -36,3 +39,6 @@ wiki.openvz.org
 
 [www]
 www.openvz.org
+
+[openvz-templates]
+ovz-tmpl.parallels.net

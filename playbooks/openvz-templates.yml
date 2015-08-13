@@ -1,11 +1,8 @@
 ---
-- hosts: forum
+- hosts: openvz-templates
   roles:
     - common
-    - apache
-#    - php
-#    - mysql
-    - fudforum
+  gather_facts: no
 
 #  handlers:
 #  - include: "{{ handlers }}/restart_services.yml"

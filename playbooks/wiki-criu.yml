@@ -1,7 +1,9 @@
 ---
-- hosts: wiki
+- hosts: wiki-criu
   roles:
-#    - common
+    - common
+    - apache
+#    - mysql
     - mediawiki
 
   tasks:

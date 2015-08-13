@@ -1,11 +1,9 @@
 ---
-- hosts: forum
+- hosts: bugzilla
   roles:
     - common
     - apache
-#    - php
-#    - mysql
-    - fudforum
+    - bugzilla
 
 #  handlers:
 #  - include: "{{ handlers }}/restart_services.yml"
