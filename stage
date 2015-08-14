@@ -42,6 +42,3 @@ ansible.stage
 
 [www]
 ansible.stage
-
-[openvz-templates]
-ansible.stage
