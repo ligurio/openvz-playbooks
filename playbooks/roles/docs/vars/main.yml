@@ -1,0 +1,5 @@
+---
+doc_user: doc_user
+doc_group: doc_group
+path_doc_build: /var/www/html/
+path_doc_sources: /home/{{ doc_user }}/vz-docs/

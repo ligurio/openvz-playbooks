@@ -1,0 +1,18 @@
+NameVirtualHost *:80
+NameVirtualHost *:443
+
+<VirtualHost *:80>
+    ServerAdmin  sergeyb@openvz.org
+	ServerName	docs.openvz.org
+	ServerAlias	docs.openvz.org
+    Redirect	permanent / https://docs.openvz.org/
+</VirtualHost>
+
+<VirtualHost *:443>
+    SSLEngine on
+    SSLCertificateFile		/etc/pki/tls/certs/openvz.org.crt
+    SSLCertificateKeyFile	/etc/pki/tls/private/openvz.org.key
+    SSLCertificateChainFile /etc/pki/tls/certs/essential.ca-bundle
+    ServerAdmin				sergeyb@openvz.org
+	DocumentRoot			{{ path_doc_build }}
+</VirtualHost>
