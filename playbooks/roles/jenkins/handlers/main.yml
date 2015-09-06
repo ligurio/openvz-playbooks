@@ -1,0 +1,4 @@
+---
+- name: restart jenkins
+  command: >
+    {{ jenkins_java }} -jar {{ jenkins_jar_location }} -s http://{{ jenkins_http_host }}:{{ jenkins_http_port }} safe-restart

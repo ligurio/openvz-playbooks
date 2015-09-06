@@ -1,0 +1,95 @@
+---
+- name: include variables
+  include_vars: "jenkins.yml"
+
+- name: install java
+  yum: pkg=java-1.7.0-openjdk state=installed
+  sudo: yes
+
+- name: configure jenkins service
+  template: src=jenkins.j2 dest={{ jenkins_configuration }}
+  sudo: yes
+
+- name: configure apache service
+  template: src=jenkins.conf.j2 dest=/etc/httpd/conf.d/jenkins.conf
+  notify: restart apache
+  sudo: yes
+
+- name: ensure dependencies are installed
+  yum:  pkg={{item}} state=present
+  with_items:
+    - curl
+    - git
+  sudo: yes
+
+- name: ensure jenkins repo is installed
+  get_url:
+    url: "{{ jenkins_repo_url }}"
+    dest: /etc/yum.repos.d/jenkins.repo
+  sudo: yes
+
+- name: add jenkins repo gpg key
+  rpm_key:
+    state: present
+    key: "{{ jenkins_repo_key_url }}"
+  sudo: yes
+
+- name: ensure jenkins is installed
+  yum: pkg=jenkins state=installed
+  sudo: yes
+
+- name: ensure jenkins is started and runs on startup
+  service: name=jenkins state=started enabled=yes
+  sudo: yes
+
+- name: wait for jenkins to start up before proceeding
+  shell: curl --head --silent http://{{ jenkins_http_host }}:{{ jenkins_http_port }}/cli/
+  register: result
+  until: result.stdout.find("200 OK") != -1
+  retries: "{{ jenkins_connection_retries }}"
+  delay: "{{ jenkins_connection_delay }}"
+  changed_when: false
+
+- name: get the jenkins-cli jarfile from the jenkins server
+  get_url:
+    url: "http://{{ jenkins_http_host }}:{{ jenkins_http_port }}/jnlpJars/jenkins-cli.jar"
+    dest: "{{ jenkins_jar_location }}"
+  register: jarfile_get
+  until: "'OK' in jarfile_get.msg or 'file already exists' in jarfile_get.msg"
+  retries: 5
+  delay: 10
+  sudo: yes
+
+- name: create jenkins updates folder
+  file:
+    path: "{{ jenkins_home }}/updates"
+    owner: "{{ jenkins_user }}"
+    group: "{{ jenkins_group }}"
+    mode: 0755
+    state: directory
+  sudo: yes
+
+- name: update jenkins plugin data
+  shell: >
+    curl -L https://updates.jenkins-ci.org/update-center.json | sed '1d;$d' > {{ jenkins_home }}/jenkins/updates/default.json
+    creates={{ jenkins_home }}/updates/default.json
+  sudo: yes
+
+- name: permissions for default.json updates info.
+  file:
+    path: "{{ jenkins_home }}/updates/default.json"
+    owner: "{{ jenkins_user }}"
+    group: "{{ jenkins_group }}"
+    mode: 0755
+  sudo: yes
+
+# Jenkins doesn't allow updates via CLI, though that is required before plugins
+# can be installed via CLI. See: https://gist.github.com/rowan-m/1026918
+
+- name: install jenkins plugins
+  command: >
+    java -jar {{ jenkins_jar_location }} -s http://{{ jenkins_http_host }}:{{ jenkins_http_port }}/ install-plugin {{ item }}
+    creates={{ jenkins_home }}/plugins/{{ item }}.jpi
+  with_items: jenkins_plugins
+  notify: restart jenkins
+  sudo: yes

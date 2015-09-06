@@ -1,0 +1,29 @@
+NameVirtualHost *:80
+NameVirtualHost *:443
+
+<VirtualHost *:80>
+    ServerAdmin  sergeyb@openvz.org
+    ServerName	 {{ jenkins_http_proxy_host }}
+    ServerAlias	 {{ jenkins_http_proxy_host }}
+    Redirect	permanent / https://{{ jenkins_http_proxy_host }}
+</VirtualHost>
+
+<VirtualHost *:443>
+    SSLEngine on
+    SSLCertificateFile		/etc/pki/tls/certs/openvz.org.crt
+    SSLCertificateKeyFile	/etc/pki/tls/private/openvz.org.key
+    SSLCertificateChainFile /etc/pki/tls/certs/essential.ca-bundle
+    ServerAdmin				sergeyb@openvz.org
+    ProxyRequests			Off
+    ProxyPreserveHost		On
+    AllowEncodedSlashes		On
+    <Proxy *>
+        Order deny,allow
+        Allow from all
+    </Proxy>
+    ProxyPass         /  http://{{ jenkins_http_host }}:{{ jenkins_http_port }}/ nocanon
+    ProxyPassReverse  /  http://{{ jenkins_http_host }}:{{ jenkins_http_port }}/
+    ProxyPassReverse  /  http://{{ jenkins_http_host }}
+    RequestHeader set X-Forwarded-Proto "https"
+    RequestHeader set X-Forwarded-Port "443"
+</VirtualHost>
