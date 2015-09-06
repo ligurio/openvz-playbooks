@@ -1,0 +1,31 @@
+---
+# tasks to setup an rsync server
+
+- name: install rsync
+  yum: pkg={{item}} state=installed
+  with_items:
+    - rsync
+    - xinetd
+  sudo: yes
+
+# FIXME: do we need rsync user? xinetd runs it under root
+#- name: add rsync to group
+#  user: name=rsync append=yes groups={{ download_group }}
+#  sudo: yes
+
+# FIXME: probably we can just replace 'yes' to 'no' to enable rsync
+- name: enable rsync in xinetd
+  copy: src=rsync-xinetd.d dest=/etc/xinetd.d/rsync
+  notify:
+  - restart xinetd
+  sudo: yes
+
+- name: copy the rsync config file
+  template: src=rsyncd.conf.j2 dest=/etc/rsyncd.conf
+  notify:
+  - restart xinetd
+  sudo: yes
+
+- name: set xinetd running/enabled
+  service: name=xinetd enabled=yes
+  sudo: yes

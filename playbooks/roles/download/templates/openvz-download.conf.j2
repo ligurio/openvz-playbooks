@@ -1,0 +1,9 @@
+NameVirtualHost *:80
+
+<VirtualHost *:80>
+ ServerName		{{ download_server }}
+ ServerAlias	{{ download_server }}
+ ServerAdmin	sergeyb@openvz.org
+
+ DocumentRoot	{{  download_destination }}
+</VirtualHost>

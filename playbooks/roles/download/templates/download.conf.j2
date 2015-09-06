@@ -1,0 +1,18 @@
+NameVirtualHost *:80
+
+<VirtualHost *:80>
+ ServerName		{{ download_server }}
+ ServerAlias	download.openvz.org
+ ServerAdmin	kir@openvz.org
+
+ DocumentRoot /var/www/html
+</VirtualHost>
+
+
+<VirtualHost *:80>
+ ServerName     download.openvirtuozzo.org
+ ServerAlias    download.openvirtuozzo.org
+ ServerAdmin    kir@openvz.org
+
+ Redirect permanent / http://download.openvz.org/
+</VirtualHost>

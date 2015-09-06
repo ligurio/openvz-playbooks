@@ -1,0 +1,24 @@
+---
+# tasks to setup an http server
+
+- name: add apache to group
+  user: name=apache append=yes groups={{ download_group }}
+  sudo: yes
+
+- name: copy the openvz mirror http config file
+  template: src=openvz-download.conf.j2 dest=/etc/httpd/conf.d/openvz-download.conf
+  sudo: yes
+
+- name: copy the openvz mirror http config file
+  copy: src=types.conf dest=/etc/httpd/conf.d/types.conf
+  sudo: yes
+
+- name: remove "welcome" config to enable indexing
+  file: path="/etc/httpd/conf.d/welcome.conf" state=absent
+  sudo: yes
+
+- name: set apache running/enabled
+  service: name=httpd enabled=yes
+  notify:
+  - restart apache
+  sudo: yes

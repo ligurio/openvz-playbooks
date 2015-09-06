@@ -1,0 +1,26 @@
+---
+# tasks to setup a download server with ftp access
+
+- name: install vsftpd package
+  yum:  pkg=vsftpd state=present
+  sudo: yes
+
+- name: add ftp to group
+  user: name=ftp append=yes groups={{ download_group }}
+  sudo: yes
+
+- name: change home directory for ftp user
+  user: name=ftp home={{ download_destination }}
+  sudo: yes
+
+# FIXME: use default config file?
+#- name: copy the vsftpd config file
+#  copy: src=vsftpd.conf dest=/etc/vsftpd/vsftpd.conf
+#  sudo: yes
+
+- name: set vsftpd running/enabled
+  service: name=vsftpd enabled=yes
+  ignore_errors: true
+  notify:
+  - restart vsftpd
+  sudo: yes
