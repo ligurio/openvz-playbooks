@@ -1,0 +1,8 @@
+---
+- hosts: wiki
+  roles:
+    - common
+    - apache
+#    - mysql
+    - mediawiki
+  gather_facts: no
