@@ -6,7 +6,7 @@
   yum: pkg=mod_ssl state=installed
   sudo: yes
 
-- name: copy certificate ca chain
+- name: install certificate ssl intermediate cert
   copy: >
     src={{ ssl_chain }}
     dest=/etc/pki/tls/certs/{{ ssl_chain }}
@@ -16,17 +16,17 @@
   notify: restart apache
   sudo: yes
 
-- name: copy apache certificate
+- name: install ssl certificate
   copy: >
     src={{ ssl_cert }}
     dest=/etc/pki/tls/certs/{{ ssl_cert }}
     owner=root
     group=root
-    mode=0644
+    mode=0600
   notify: restart apache
   sudo: yes
 
-- name: copy apache key
+- name: install ssl key
   copy: >
     src={{ ssl_key }}
     dest=/etc/pki/tls/private/{{ ssl_key }}

@@ -4,6 +4,7 @@
     - common
     - apache
     - mysql
+    - php
     - mediawiki
     - yum-cron
   gather_facts: no

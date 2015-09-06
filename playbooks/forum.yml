@@ -3,7 +3,7 @@
   roles:
     - common
     - apache
-#    - php
+    - php
     - mysql
     - fudforum
     - yum-cron
