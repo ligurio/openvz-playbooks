@@ -1,0 +1,21 @@
+---
+# tasks to setup a download server
+
+- name: Include variables
+  include_vars: "main.yml"
+
+- name: add group
+  group: name={{ download_group }} system=yes state=present
+  sudo: yes
+
+- name: add user
+  user: name={{ download_user }} home={{ download_destination }} comment="OpenVZ download server" createhome=yes system=yes shell=/sbin/nologin
+  sudo: yes
+
+- name: add apache to group
+  user: name=apache append=yes groups={{ download_group }}
+  sudo: yes
+
+- name: setup crontab
+  cron: user="{{ download_user }}" name="Update OpenVZ download files" minute="00" job="rsync -av --delete rsync://{{ upstream_mirror }} {{ download_destination }}/" cron_file=openvz-mirror-autoupdate
+  sudo: yes
