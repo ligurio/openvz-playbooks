@@ -1,0 +1,19 @@
+[mysqld]
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+skip-networking
+set-variable    = key_buffer=64M
+set-variable    = max_allowed_packet=1M
+set-variable    = table_cache=64
+set-variable    = sort_buffer=1M
+set-variable    = net_buffer_length=8K
+set-variable    = myisam_sort_buffer_size=16M
+#log=/var/log/mysqld-query.log
+     
+[mysql.server]
+user=mysql
+basedir=/var/lib
+
+[safe_mysqld]
+err-log=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
