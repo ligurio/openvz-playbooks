@@ -24,6 +24,12 @@ $ ansible-playbook site.yml -i stage
 $ ansible-playbook site.yml -i stage --limit mirrors
 ```
 
+Gather facts on OpenVZ GIT server:
+
+```
+$ ansible -i production -m setup git
+```
+
 ### Scheduled check-diff
 
 Every night a cron job runs over all playbooks under playbooks/{groups}{hosts}

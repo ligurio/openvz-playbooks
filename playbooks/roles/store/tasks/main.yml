@@ -2,5 +2,6 @@
 # tasks to setup redirects to OpenVZ store
 
 - name: copy the download http config file
-  copy: src=store.conf dest=/etc/httpd/conf.d/store.conf
+  copy: src=store.conf dest=/etc/httpd/conf.d/store.conf mode=0644
   notify: restart apache
+  sudo: yes

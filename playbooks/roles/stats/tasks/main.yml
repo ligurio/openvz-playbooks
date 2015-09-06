@@ -5,11 +5,11 @@
 
 - name: install vzstats-server rpm package
   sudo: yes
-  yum: name=vzstats-server state=latest
+  yum: name=vzstats-server state=present
 
 - name: install additional packages
   sudo: yes
-  yum: name=mysql state=latest
+  yum: name=mysql state=present
 
 # see https://git.sw.ru/projects/VS/repos/vzstats-server/browse/INSTALL
 - name: database setup

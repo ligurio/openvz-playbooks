@@ -1,14 +1,17 @@
 ---
-- name: ensure python-selinux is installed on all nodes.
+- name: ensure python-selinux is installed
   action: yum name=libselinux-python state=installed
   sudo: yes
+#  when: ansible_virtualization_type == 'openvz'
 
 - name: set selinux to permissive
   action: selinux policy=targeted state=permissive
   ignore_errors: True
   sudo: yes
+#  when: ansible_virtualization_type == 'openvz'
 
 - name: ensure selinux is turned off
   action: command /usr/sbin/setenforce 0
   ignore_errors: True
   sudo: yes
+#  when: ansible_virtualization_type == 'openvz'

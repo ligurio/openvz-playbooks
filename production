@@ -33,7 +33,7 @@ planet.openvz.org
 stats.openvz.org
 
 [store]
-store.openvz.org
+www.openvz.org	ansible_ssh_port=2231
 
 [vault]
 vault.openvz.org
