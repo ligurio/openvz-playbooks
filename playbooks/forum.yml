@@ -4,6 +4,7 @@
     - common
     - apache
 #    - php
-#    - mysql
+    - mysql
     - fudforum
+    - yum-cron
   gather_facts: no

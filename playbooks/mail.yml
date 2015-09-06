@@ -4,4 +4,5 @@
     - common
     - mailman
 #    - postfix
+    - yum-cron
   gather_facts: no

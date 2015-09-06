@@ -4,4 +4,5 @@
     - common
     - apache
     - mirmon
+    - yum-cron
   gather_facts: no

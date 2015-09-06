@@ -4,4 +4,5 @@
     - common
     - apache
     - store
+    - yum-cron
   gather_facts: no

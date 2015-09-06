@@ -4,6 +4,7 @@
     - common
     - apache
     - bugzilla
+    - yum-cron
   gather_facts: no
 
 #  handlers:

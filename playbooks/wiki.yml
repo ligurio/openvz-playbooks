@@ -3,6 +3,7 @@
   roles:
     - common
     - apache
-#    - mysql
+    - mysql
     - mediawiki
+    - yum-cron
   gather_facts: no
