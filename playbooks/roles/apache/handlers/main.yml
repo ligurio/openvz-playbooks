@@ -1,0 +1,4 @@
+---
+- name: restart apache
+  sudo: yes
+  action: service name=httpd state=reloaded

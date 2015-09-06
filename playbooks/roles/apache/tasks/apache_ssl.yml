@@ -1,0 +1,37 @@
+---
+- name: include variables
+  include_vars: "apache.yml"
+
+- name: install mod_ssl
+  yum: pkg=mod_ssl state=installed
+  sudo: yes
+
+- name: copy certificate ca chain
+  copy: >
+    src={{ ssl_chain }}
+    dest=/etc/pki/tls/certs/{{ ssl_chain }}
+    owner=root
+    group=root
+    mode=0644
+  notify: restart apache
+  sudo: yes
+
+- name: copy apache certificate
+  copy: >
+    src={{ ssl_cert }}
+    dest=/etc/pki/tls/certs/{{ ssl_cert }}
+    owner=root
+    group=root
+    mode=0644
+  notify: restart apache
+  sudo: yes
+
+- name: copy apache key
+  copy: >
+    src={{ ssl_key }}
+    dest=/etc/pki/tls/private/{{ ssl_key }}
+    owner=root
+    group=root
+    mode=0400
+  notify: restart apache
+  sudo: yes
