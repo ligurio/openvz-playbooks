@@ -6,6 +6,4 @@
 #    - php
 #    - mysql
     - fudforum
-
-#  handlers:
-#  - include: "{{ handlers }}/restart_services.yml"
+  gather_facts: no

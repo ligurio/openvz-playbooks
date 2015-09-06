@@ -1,5 +1,0 @@
----
-- hosts: mailman
-  roles:
-    - common
-    - mailman

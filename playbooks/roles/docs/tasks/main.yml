@@ -2,11 +2,20 @@
 # tasks to setup a doc server
 # see https://src.openvz.org/projects/OVZ/repos/vz-docs/browse/README.md
 
-- name: add doc user
-  user: name=doc-user home=/var/www/html comment="OpenVZ docs" createhome=yes system=yes
+- name: include variables
+  include_vars: "main.yml"
+
+- name: add user
+  user: name={{ doc_user }} shell=/sbin/nologin comment="OpenVZ docs" createhome=yes system=yes
+  sudo: yes
+
+- name: add group
+  group: name={{ doc_group }} system=yes state=present
+  sudo: yes
 
 - name: add apache to docs group
-  user: name=apache append=yes groups=doc-user
+  user: name=apache append=yes groups={{ doc_group }}
+  sudo: yes
 
 - name: install the doc packages
   yum:  pkg={{item}} state=present
@@ -17,15 +26,30 @@
     - docbook5-style-xsl
     - xerces-j2
     - docbook5-schemas
+  sudo: yes
 
 - name: install git package
   yum: name=git state=latest
+  sudo: yes
 
 - name: checkout git repo with sources
-  git: repo=https://src.openvz.org/scm/ovz/vz-docs.git dest=/var/www/html/vz-docs
+  git: repo=https://src.openvz.org/scm/ovz/vz-docs.git dest={{ path_doc_sources }}
+  sudo_user: "{{ doc_user }}"
+  sudo: yes
+
+- name: build OpenVZ documents
+  command: chdir={{ path_doc_sources }} {{ item }}
+  with_items:
+    - make
+    - make publish
+  sudo_user: "{{ doc_user }}"
+  sudo: yes
 
 - name: setup crontab
-  cron: name="publish doc" minute="00" job="cd /var/www/html/vz-docs && git pull && make && make publish"
+  cron: user="{{ doc_user }}" name="publish doc" minute="00" job="cd {{ path_doc_sources }} && git pull && make publish" cron_file=openvz-documentation-autoupdate
+  sudo: yes
 
 - name: copy the download http config file
-  copy: src=openvz-docs.conf dest=/etc/httpd/conf.d/openvz-docs.conf
+  template: src=openvz-docs.conf.j2 dest=/etc/httpd/conf.d/openvz-docs.conf
+  notify: restart apache
+  sudo: yes

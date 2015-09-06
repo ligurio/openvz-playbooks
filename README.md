@@ -3,40 +3,7 @@
 ansible playbooks/files/etc repository for [OpenVZ](https://openvz.org/)
 infrastructure.
 
-### Repository structure
-
-*files* - files and templates for use in playbooks/tasks
-      - subdirs for specific tasks/dirs highly recommended
-
-*inventory* - where the inventory and additional vars is stored
-          - All files in this directory in ini format
-          - added together for total inventory
-  group_vars:
-          - per group variables set here in a file per group 
-  host_vars:
-          - per host variables set here in a file per host
-
-*library* - library of custom local ansible modules
-
-*playbooks* - collections of plays we want to run on systems
-
-  groups: groups of hosts configured from one playbook.
-  
-  hosts: playbooks for single hosts.
-
-  manual: playbooks that are only run manually by an admin as needed.
-
-*tasks* - snippets of tasks that should be included in plays
-
-*roles* - specific roles to be use in playbooks.
-        Each role has it's own files/templates/vars
-
-*master.yml* - This is the master playbook, consisting of all
-             current group and host playbooks. Note that the
-             daily cron doesn't run this, it runs even over
-             playbooks that are not yet included in master.
-             This playbook is useful for making changes over
-             multiple groups/hosts usually with -t (tag).
+{bugzilla,[ci](https://ci.openvz.org/),[docs](https://docs.openvz.org/),[download](https://download.openvz.org/),[forum](https://forum.openvz.org/),git,[mirrors](http://mirrors.openvz.org/),[planet](http://planet.openvz.org/),stats,[store](http://store.openvz.org/),[vault](http://vault.openvz.org/),[www](https://www.openvz.org/),[wiki](https://wiki.openvz.org/)}.openvz.org
 
 ### Using
 

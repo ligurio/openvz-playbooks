@@ -3,3 +3,4 @@
 
 - name: copy the download http config file
   copy: src=store.conf dest=/etc/httpd/conf.d/store.conf
+  notify: restart apache

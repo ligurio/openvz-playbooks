@@ -15,7 +15,7 @@
 # Initialize mailman (must be done after settings up the DBs)
 #
 #- name: add mailman to the apache group
-#  user: name=mailman groups=apache append=yes
+#  user: name=mailman groups=apache append=yes shell=/sbin/nologin
 #  tags:
 #  - config
 #  #notify:
@@ -31,7 +31,7 @@
 
 ## for access to the full-text index
 #- name: add apache to the mailman group
-#  user: name=apache groups=mailman append=yes
+#  user: name=apache groups=mailman append=yes shell=/sbin/nologin
 #  tags:
 #  - config
 #  notify:

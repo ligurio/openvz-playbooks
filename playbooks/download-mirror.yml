@@ -3,10 +3,6 @@
   roles:
     - common
     - apache
-    - mirror-http
-    - mirror-ftp
-    - mirror-rsync
+    - download
+    - download-mirror
   gather_facts: no
-
-#  handlers:
-#  - include: "{{ handlers }}/restart_services.yml"

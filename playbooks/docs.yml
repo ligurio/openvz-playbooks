@@ -5,6 +5,3 @@
     - apache
     - docs
   gather_facts: no
-
-#  handlers:
-#  - include: "{{ handlers }}/restart_services.yml"

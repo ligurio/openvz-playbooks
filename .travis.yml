@@ -1,6 +1,8 @@
 ---
 language: php
 
+# https://github.com/geerlingguy/ansible-role-jenkins/blob/master/.travis.yml
+
 php:
   - 5.4
 

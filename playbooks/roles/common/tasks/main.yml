@@ -5,14 +5,19 @@
 # Things here are things we want to do to every machine no matter what.
 #
 
+- include: selinux.yml
+
 - name: dist pkgs to install
   yum: state=present name={{ item }}
+  sudo: yes
   with_items:
      - ntpdate
      - ntp
 
 - name: start ntpd
   service: name=ntpd state=running enabled=true
+  sudo: yes
 
 - name: update motd
   copy: src=motd dest=/etc/motd
+  sudo: yes

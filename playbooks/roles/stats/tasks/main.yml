@@ -1,31 +1,17 @@
 ---
-# tasks to setup a doc server
-# see https://src.openvz.org/projects/OVZ/repos/vz-docs/browse/README.md
 
-- name: add doc-user group
-  group: name=doc-user gid=104 system=yes state=present
+# not tested yet
+# https://git.sw.ru/scm/vs/vzstats-server.git
 
-- name: add doc user
-  user: name=doc-user uid=104 gid=104 home=/var/www/html comment="OpenVZ docs" createhome=yes system=yes shell=/bin/bash
+- name: install vzstats-server rpm package
+  sudo: yes
+  yum: name=vzstats-server state=latest
 
-- name: add apache to docs group
-  user: name=apache append=yes groups=doc-user
+- name: install additional packages
+  sudo: yes
+  yum: name=mysql state=latest
 
-- name: install the doc packages
-  yum:  pkg={{item}} state=present
-  with_items:
-    - asciidoc
-    - fop
-    - docbook5-style-xsl-extensions
-    - docbook5-style-xsl
-    - xerces-j2
-    - docbook5-schemas
-
-- name: install git package
-  yum: name=git state=latest
-
-- name: checkout git repo with sources
-  git: repo=https://src.openvz.org/scm/ovz/vz-docs.git dest=/home/sergeyb/vz-docs
-
-- name: setup crontab
-  cron: name="publish doc" minute="00" job="cd ~/vz-docs/ && git pull && make && make publish"
+# see https://git.sw.ru/projects/VS/repos/vzstats-server/browse/INSTALL
+- name: database setup
+  command: mysql -c "CREATE DATABASE stats CHARACTER SET = utf8_general_ci;"
+  command: mysql -c "CREATE USER 'stats'@'localhost' IDENTIFIED BY 'very secret password';"

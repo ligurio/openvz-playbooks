@@ -5,8 +5,8 @@
 - name: add planet group
   group: name=planet-user system=yes state=present
 
-#- name: add planet user
-#  user: name=planet-user home=/var/www/planet.openvz.org comment="People Planet Eater" system=yes
+- name: add planet user
+  user: name=planet-user home=/var/www/planet.openvz.org comment="People Planet Eater" system=yes shell=/sbin/nologin
 
 - name: add apache to planet group
   user: name=apache append=yes groups=planet-user

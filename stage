@@ -1,6 +1,9 @@
 [bugzilla]
 ansible.stage
 
+[ci]
+ansible.stage ansible_ssh_user=sergeyb
+
 [docs]
 ansible.stage
 
@@ -16,7 +19,7 @@ ansible.stage
 [git]
 ansible.stage
 
-[mailman]
+[mail]
 ansible.stage
 
 [mirmon]

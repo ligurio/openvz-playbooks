@@ -1,14 +1,18 @@
 [bugzilla]
 bugzilla.openvz.org
 
+[ci]
+ci.openvz.org
+
 [docs]
 docs.openvz.org
 
+[download]
+eu.download.openvz.org
+download.openvz.org
+
 [download-mirror]
 eu.download.openvz.org
-
-[download]
-download.openvz.org
 
 [forum]
 forum.openvz.org
@@ -16,7 +20,7 @@ forum.openvz.org
 [git]
 www.openvz.org
 
-[mailman]
+[mail]
 lists.openvz.org
 
 [mirmon]

@@ -4,6 +4,5 @@
     - common
     - apache
     - www
-
-#  handlers:
-#  - include: "{{ handlers }}/restart_services.yml"
+    - jekyll
+  gather_facts: no

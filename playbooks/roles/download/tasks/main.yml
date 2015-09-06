@@ -1,20 +1,29 @@
 ---
-# tasks to setup a download server
 
-- name: add upload group
-  group: name=upload system=yes state=present
+- name: include variables
+  include_vars: "../../download-mirror/vars/main.yml"
 
-- name: add upload user
-  user: name=upload home=/var/www/html comment="OpenVZ download server" createhome=yes system=yes
+- name: add group
+  group: name={{ download_group }} system=yes state=present
+  sudo: yes
 
-- name: add apache to upload group
-  user: name=apache append=yes groups=upload
+- name: add user
+  user: name={{ download_user }} home={{ download_destination }} comment="OpenVZ download server" createhome=yes system=yes shell=/sbin/nologin
+  sudo: yes
 
-- name: copy the download http config file
-  copy: src=download.conf dest=/etc/httpd/conf.d/download.conf
+- name: change rights on directory
+  command: chgrp -R download {{ download_destination }}
+  sudo: yes
+# FIXME
+#  file:
+#    path: "{{ jenkins_home }}/updates"
+#    owner: "{{ jenkins_user }}"
+#    group: "{{ jenkins_group }}"
+#    mode: 0755
+#    state: directory
 
-- name: copy the rsyncd config file
-  copy: src=rsyncd.conf dest=/etc/rsyncd.conf
+# FIXME: add users accounts to /etc/passwd, /etc/group
 
-- name: copy the vsftpd config file
-  copy: src=vsftpd.conf dest=/etc/vsftpd/vsftpd.conf
+- include: download-ftp.yml
+- include: download-http.yml
+- include: download-rsync.yml

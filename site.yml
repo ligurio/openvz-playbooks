@@ -5,7 +5,7 @@
 - include: playbooks/download-mirror.yml
 - include: playbooks/forum.yml
 - include: playbooks/git.yml
-- include: playbooks/mailman.yml
+- include: playbooks/mail.yml
 - include: playbooks/mirmon.yml
 - include: playbooks/planet.yml
 - include: playbooks/stats.yml

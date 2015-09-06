@@ -4,6 +4,4 @@
     - common
     - apache
     - vault
-
-#  handlers:
-#  - include: "{{ handlers }}/restart_services.yml"
+  gather_facts: no

@@ -4,6 +4,3 @@
     - common
     - apache
     - git
-
-#  handlers:
-#  - include: "{{ handlers }}/restart_services.yml"

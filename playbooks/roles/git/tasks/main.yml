@@ -3,3 +3,4 @@
 
 - name: copy the download http config file
   copy: src=git-redirects.conf dest=/etc/httpd/conf.d/git-redirects.conf
+  sudo: yes

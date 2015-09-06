@@ -4,9 +4,13 @@
   with_items:
   - httpd
   - httpd-tools
+  sudo: yes
 
 - name: set apache running/enabled
   service: name=httpd enabled=yes
   ignore_errors: true
   notify:
   - restart apache
+  sudo: yes
+
+- include: apache_ssl.yml
