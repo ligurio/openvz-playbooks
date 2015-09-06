@@ -1,9 +1,8 @@
 # openvz-playbooks
 
 ansible playbooks/files/etc repository for [OpenVZ](https://openvz.org/)
-infrastructure.
-
-{bugzilla,[ci](https://ci.openvz.org/),[docs](https://docs.openvz.org/),[download](https://download.openvz.org/),[forum](https://forum.openvz.org/),git,[mirrors](http://mirrors.openvz.org/),[planet](http://planet.openvz.org/),stats,[store](http://store.openvz.org/),[vault](http://vault.openvz.org/),[www](https://www.openvz.org/),[wiki](https://wiki.openvz.org/)}.openvz.org
+infrastructure:
+{bugzilla,[ci](https://ci.openvz.org/),[docs](https://docs.openvz.org/),[download](https://download.openvz.org/),[forum](https://forum.openvz.org/),git,[mirrors](http://mirrors.openvz.org/),[planet](http://planet.openvz.org/),[stats](https://stats.openvz.org/),[store](http://store.openvz.org/),[vault](http://vault.openvz.org/),[www](https://www.openvz.org/),[wiki](https://wiki.openvz.org/)}.openvz.org
 
 ### Using
 
