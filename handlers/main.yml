@@ -1,0 +1,55 @@
+########################################
+# Handlers for restarting services
+#
+
+- name: reload apache
+  sudo: yes
+  action: service name=httpd state=reloaded
+
+- name: reload httpd
+  sudo: yes
+  action: service name=httpd state=reloaded
+
+- name: restart crond
+  sudo: yes
+  action: service name=crond state=restarted
+
+- name: restart iptables
+  sudo: yes
+  action: service name=iptables state=restarted
+
+- name: restart ip6tables
+  sudo: yes
+  action: service name=ip6tables state=restarted
+
+- name: restart mailman
+  sudo: yes
+  action: service name=mailman state=restarted
+
+- name: restart ntpd
+  sudo: yes
+  action: service name=ntpd state=restarted
+
+- name: restart rsyslog
+  sudo: yes
+  action: service name=rsyslog state=restarted
+
+- name: restart sshd
+  sudo: yes
+  action: service name=sshd state=restarted
+
+- name: restart network
+  sudo: yes
+  action: service name=network state=restarted
+
+- name: reload systemd
+  sudo: yes
+  command: systemctl daemon-reload
+
+- name: restart vsftpd
+  sudo: yes
+  action: service name=vsftpd state=restarted
+
+- name: restart xinetd
+  sudo: yes
+  action: service name=xinetd state=restarted
