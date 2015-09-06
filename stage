@@ -37,10 +37,7 @@ ansible.stage
 [vault]
 ansible.stage
 
-[wiki-openvz]
-ansible.stage
-
-[wiki-criu]
+[wiki]
 ansible.stage
 
 [www]

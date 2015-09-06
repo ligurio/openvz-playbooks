@@ -1,8 +1,0 @@
----
-- hosts: wiki-openvz
-  roles:
-    - common
-    - apache
-#    - mysql
-    - mediawiki
-  gather_facts: no

@@ -3,16 +3,21 @@
 
 - name: add vault group
   group: name=vault system=yes state=present
+  sudo: yes
 
 - name: add vault user
-  user: name=vault-user home=/var/www/html/download.openvz.org comment="OpenVZ vault server" createhome=yes system=yes shell=/sbin/nologin
+  user: name=vault home=/var/www/html/download.openvz.org comment="OpenVZ vault server" createhome=yes system=yes shell=/sbin/nologin
+  sudo: yes
 
 - name: add apache to vault group
   user: name=apache append=yes groups=vault
+  sudo: yes
 
 - name: remove "welcome" config to enable indexing
   file: path="/etc/httpd/conf.d/welcome.conf" state=absent
+  sudo: yes
 
 - name: configure apache service
   copy: src=vault.conf dest=/etc/httpd/conf.d/vault.conf
-#  notify: restart apache
+  notify: restart apache
+  sudo: yes

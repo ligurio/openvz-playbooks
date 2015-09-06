@@ -1,8 +1,0 @@
----
-- hosts: wiki-criu
-  roles:
-    - common
-    - apache
-#    - mysql
-    - mediawiki
-  gather_facts: no

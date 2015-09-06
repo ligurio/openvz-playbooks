@@ -1,5 +1,0 @@
----
-- hosts: openvz-templates
-  roles:
-    - common
-  gather_facts: no
