@@ -6,6 +6,9 @@
   yum: pkg=mod_ssl state=installed
   sudo: yes
 
+- name: update ssl.conf
+  copy: src=ssl.conf dest=/etc/httpd/conf.d/ssl.conf owner=root group=root mode=644 backup=yes
+
 - name: install certificate ssl intermediate cert
   copy: >
     src={{ ssl_chain }}
