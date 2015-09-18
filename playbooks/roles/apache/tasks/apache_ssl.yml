@@ -8,6 +8,8 @@
 
 - name: update ssl.conf
   copy: src=ssl.conf dest=/etc/httpd/conf.d/ssl.conf owner=root group=root mode=644 backup=yes
+  notify: restart apache
+  sudo: yes
 
 - name: install certificate ssl intermediate cert
   copy: >

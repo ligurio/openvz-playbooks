@@ -3,12 +3,16 @@
 
 - name: copy the download http config file
   copy: src=bugzilla-redirects.conf dest=/etc/httpd/conf.d/bugzilla-redirects.conf
+  sudo: yes
 
 - name: copy the source mapping file
   command: mkdir -p /usr/share/bugzilla/
+  sudo: yes
 
 - name: copy the source mapping file
   copy: src=bugs.txt dest=/usr/share/bugzilla/bugs.txt
+  sudo: yes
 
 - name: make file with hashes from source mapping file
   command: httxt2dbm -v -i /usr/share/bugzilla/bugs.txt -o /usr/share/bugzilla/bugs.map
+  sudo: yes

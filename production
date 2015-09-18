@@ -1,5 +1,5 @@
 [bugzilla]
-bugzilla.openvz.org
+bugzilla.openvz.org ansible_ssh_port=2231
 
 [ci]
 ci.openvz.org
