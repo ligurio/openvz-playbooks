@@ -53,3 +53,7 @@
 - name: restart xinetd
   sudo: yes
   action: service name=xinetd state=restarted
+
+- name: newaliases
+  sudo: yes
+  command: /usr/bin/newaliases

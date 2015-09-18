@@ -5,4 +5,6 @@ playbooks/roles/wiki-criu/files/LocalSettings.php
 playbooks/roles/apache/files/*.crt
 playbooks/roles/apache/files/*.key
 playbooks/roles/apache/files/essential.ca-bundle
+playbooks/roles/mailman/files/aliases
+playbooks/roles/mailman/files/adm.pw
 ansible.log

@@ -21,7 +21,7 @@ forum.openvz.org
 www.openvz.org
 
 [mail]
-lists.openvz.org
+lists.openvz.org ansible_ssh_port=2231
 
 [mirmon]
 mirrors.openvz.org
