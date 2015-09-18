@@ -2,6 +2,7 @@
 - hosts: mail
   roles:
     - common
+    - apache
     - mailman
     - yum-cron
   gather_facts: no
