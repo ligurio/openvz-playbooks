@@ -1,10 +1,10 @@
 ---
 
-- name: create mediawiki log directories
-  file: path={{item}} state=directory owner=mediawiki
-  with_items:
-    - /var/log/mediawiki/
-    - /var/log/mediawiki/debuglogs/
+#- name: create mediawiki log directories
+#  file: path={{item}} state=directory owner=mediawiki
+#  with_items:
+#    - /var/log/mediawiki/
+#    - /var/log/mediawiki/debuglogs/
 
 #- name: copy mediawiki settings from templates
 #  template: src={{item}} dest=/var/www/openvz-wiki/{{item|basename|replace('.j2','')}}
@@ -15,29 +15,29 @@
 #  notify:
 #    - Rebuild localisation cache
 
-- name: copy mediawiki settings
-  copy: src=LocalSettings.php-OpenVZ dest=/var/www/html/wiki-openvz/LocalSettings.php
-  sudo: yes
-  sudo_user: mediawiki
-  notify:
-    - Rebuild localisation cache
+#- name: copy mediawiki settings
+#  copy: src=LocalSettings.php-OpenVZ dest=/var/www/html/wiki-openvz/LocalSettings.php
+#  sudo: yes
+#  sudo_user: mediawiki
+#  notify:
+#    - Rebuild localisation cache
 
-- name: copy mediawiki settings from files
-  copy: src={{item}} dest=/var/www/openvz-wiki/{{item|basename}}
-  with_fileglob:
-    - ./localsettings/*.php
-  sudo: yes
-  sudo_user: mediawiki
-  notify:
-    - Rebuild localisation cache
+#- name: copy mediawiki settings from files
+#  copy: src={{item}} dest=/var/www/openvz-wiki/{{item|basename}}
+#  with_fileglob:
+#    - ./localsettings/*.php
+#  sudo: yes
+#  sudo_user: mediawiki
+#  notify:
+#    - Rebuild localisation cache
 
-- name: copy the www config file
-  copy: src=criu-wiki.conf dest=/etc/httpd/conf.d/criu-wiki.conf
-  notify:
-    - restart apache
+#- name: copy the www config file
+#  copy: src=criu-wiki.conf dest=/etc/httpd/conf.d/criu-wiki.conf
+#  notify:
+#    - restart apache
 
-- name: copy robots.txt file
-  copy: src=robots.txt dest=/var/www/html/wiki-openvz/robots.txt
+#- name: copy robots.txt file
+#  copy: src=robots.txt dest=/var/www/html/wiki-openvz/robots.txt
 
-- name: copy favicon file
-  copy: src=favicon.ico dest=/var/www/html/wiki-openvz/favicon.ico
+#- name: copy favicon file
+#  copy: src=favicon.ico dest=/var/www/html/wiki-openvz/favicon.ico

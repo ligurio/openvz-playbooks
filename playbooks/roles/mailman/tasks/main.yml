@@ -5,7 +5,7 @@
 # Packages
 #
 
-- name: install needed packages
+- name: install required packages
   yum: pkg={{ item }} state=present
   with_items:
   - mailman
