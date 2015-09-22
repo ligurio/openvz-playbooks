@@ -15,7 +15,7 @@ download.openvz.org
 eu.download.openvz.org
 
 [forum]
-forum.openvz.org
+forum.openvz.org ansible_ssh_port=2231
 
 [git]
 www.openvz.org
@@ -33,7 +33,7 @@ mirrors.openvz.org
 planet.openvz.org
 
 [stats]
-stats.openvz.org
+stats.openvz.org ansible_ssh_port=2231
 
 [store]
 www.openvz.org	ansible_ssh_port=2231

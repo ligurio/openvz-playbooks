@@ -17,6 +17,10 @@
   file: path="/etc/httpd/conf.d/welcome.conf" state=absent
   sudo: yes
 
+- name: create directory for log files
+  command: mkdir -p /var/log/httpd/vault.openvz.org/
+  sudo: yes
+
 - name: configure apache service
   copy: src=vault.conf dest=/etc/httpd/conf.d/vault.conf
   notify: restart apache
