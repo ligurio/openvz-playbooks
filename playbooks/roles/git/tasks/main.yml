@@ -1,6 +1,12 @@
 ---
 # tasks to setup redirects from git
 
-- name: copy the download http config file
+- name: copy the http config file
   copy: src=git-redirects.conf dest=/etc/httpd/conf.d/git-redirects.conf
+  notify: restart apache
+  sudo: yes
+
+- name: copy the http config file with redirects
+  copy: src=git-redirects.inc dest=/etc/httpd/conf.d/git-redirects.inc
+  notify: restart apache
   sudo: yes
