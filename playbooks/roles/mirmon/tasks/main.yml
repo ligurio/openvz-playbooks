@@ -4,30 +4,37 @@
 
 - name: add mirrors group
   group: name=mirrors-user state=present
+  sudo: yes
 
 - name: add mirrors user
   user: name=mirrors-user home=/var/www/mirrors.openvz.org comment="Mirrors Monitoring" createhome=yes system=yes shell=/sbin/nologin
+  sudo: yes
 
 - name: add apache to mirrors group
   user: name=apache append=yes groups=mirrors-user
+  sudo: yes
 
 - name: install the mirrors packages
   yum:  pkg={{item}} state=present
   with_items:
     - mirmon
     - git
-
-- name: create mirmon results directory
-  command: mkdir -p /var/www/mirrors.openvz.org
+  sudo: yes
 
 - name: checkout git repo with sources
-  git: repo=https://src.openvz.org/scm/ovz/openvz-mirrors.git dest=/var/www/mirrors.openvz.org
-
-- name: generate timestamp via crontab
-  cron: name="generate timestamp" minute="00" job="$(/bin/date +\%s > /var/www/html/timestamp)"
+  git: repo=https://src.openvz.org/scm/ovz/openvz-mirrors.git dest=/var/www/mirrors.openvz.org/source
+  sudo: yes
+  sudo_user: mirrors-user
 
 - name: update mirror lists via crontab
-  cron: name="check mirrors" minute="00" job="cd /var/www/mirrors.openvz.org/ && git pull && make"
+  cron: user=mirrors-user name="check mirrors" minute="00" job="cd /var/www/mirrors.openvz.org/source && git pull && make" cron_file=openvz-mirrorlists-autoupdate
+  sudo: yes
+
+- name: generate timestamp via crontab
+  cron: user=mirrors-user name="generate timestamp" minute="00" job="$(/bin/date +\%s > /var/www/html/timestamp)" cron_file=openvz-timestamp-autoupdate
+  sudo: yes
 
 - name: copy the mirrors http config file
   copy: src=mirrors.conf dest=/etc/httpd/conf.d/mirrors.conf
+  notify: restart apache
+  sudo: yes

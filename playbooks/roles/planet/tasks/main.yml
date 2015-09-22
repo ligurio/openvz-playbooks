@@ -4,27 +4,39 @@
 
 - name: add planet group
   group: name=planet-user system=yes state=present
+  sudo: yes
 
 - name: add planet user
   user: name=planet-user home=/var/www/planet.openvz.org comment="People Planet Eater" system=yes shell=/sbin/nologin
+  sudo: yes
 
 - name: add apache to planet group
   user: name=apache append=yes groups=planet-user
+  sudo: yes
 
 - name: install the planet packages
   yum:  pkg={{item}} state=present
   with_items:
     - git
+  sudo: yes
 
 - name: checkout git repo with sources
   git: repo=https://src.openvz.org/scm/ovz/openvz-planet.git dest=/var/www/planet.openvz.org
+  ignore_errors: True
+  sudo: yes
+  sudo_user: planet-user
 
 - name: checkout git submodule
-  command: git submodule update --init --recursive chdir=/var/www/planet.openvz.org
-  #command: cd /var/www/planet.openvz.org/ && git submodule init
+  command: git submodule update --init --recursive chdir=/var/www/planet.openvz.org/
+  ignore_errors: True
+  sudo: yes
+  sudo_user: planet-user
 
 - name: setup crontab
-  cron: name="update planet feeds" minute="00" job="cd /var/www/planet.openvz.org && git pull && make"
+  cron: user=planet-user name="update planet feeds" minute="00" job="cd /var/www/planet.openvz.org/ && git pull && make" cron_file=openvz-planet-autoupdate
+  sudo: yes
 
 - name: copy the planet http config file
   copy: src=planet.conf dest=/etc/httpd/conf.d/planet.conf
+  notify: restart apache
+  sudo: yes

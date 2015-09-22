@@ -27,10 +27,10 @@ www.openvz.org
 lists.openvz.org ansible_ssh_port=2231
 
 [mirmon]
-mirrors.openvz.org
+mirrors.openvz.org ansible_ssh_port=2231
 
 [planet]
-planet.openvz.org
+www.openvz.org
 
 [stats]
 stats.openvz.org ansible_ssh_port=2231
