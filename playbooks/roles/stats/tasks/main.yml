@@ -3,15 +3,15 @@
 # not tested yet
 # https://git.sw.ru/scm/vs/vzstats-server.git
 
-- name: install vzstats-server rpm package
-  sudo: yes
-  yum: name=vzstats-server state=present
+#- name: install vzstats-server rpm package
+#  sudo: yes
+#  yum: name=vzstats-server state=present
 
 - name: install additional packages
   sudo: yes
   yum: name=mysql state=present
 
 # see https://git.sw.ru/projects/VS/repos/vzstats-server/browse/INSTALL
-- name: database setup
-  command: mysql -c "CREATE DATABASE stats CHARACTER SET = utf8_general_ci;"
-  command: mysql -c "CREATE USER 'stats'@'localhost' IDENTIFIED BY 'very secret password';"
+#- name: database setup
+#  command: mysql -c "CREATE DATABASE stats CHARACTER SET = utf8_general_ci;"
+#  command: mysql -c "CREATE USER 'stats'@'localhost' IDENTIFIED BY 'very secret password';"
