@@ -20,6 +20,9 @@ forum.openvz.org
 [git]
 www.openvz.org
 
+[static]
+www.openvz.org
+
 [mail]
 lists.openvz.org ansible_ssh_port=2231
 
