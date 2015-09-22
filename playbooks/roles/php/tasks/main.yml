@@ -7,33 +7,33 @@
   with_items:
     - php
     - php-xml
-#    - php-mysql
-#    - php-devel
-#    - php-gd
-#    - php-opcache
-#    - python-pygments
+    - php-mysql
+    - php-devel
+    - php-gd
+    - php-opcache
+    - python-pygments
 
-- name: create mysql user for mediawiki
-  mysql_user:
-    name: "{{ mariadb_user }}"
-    host: 'localhost'
-    password: "{{ mariadb_password }}"
-    priv: "*.*:ALL"
-    state: present
-    login_user: root
-    login_password: "{{ mariadb_root_password }}"
-    login_host: "127.0.0.1"
-  delegate_to: "{{ inventory_hostname }}"
+#- name: create mysql user for mediawiki
+#  mysql_user:
+#    name: "{{ mariadb_user }}"
+#    host: 'localhost'
+#    password: "{{ mariadb_password }}"
+#    priv: "*.*:ALL"
+#    state: present
+#    login_user: root
+#    login_password: "{{ mariadb_root_password }}"
+#    login_host: "127.0.0.1"
+#  delegate_to: "{{ inventory_hostname }}"
 
-- name: update php.ini
-  copy: src=php.ini dest=/etc/php.d/php.ini owner=root group=root mode=0644
-  notify:
-  - restart httpd
+#- name: update php.ini
+#  copy: src=php.ini dest=/etc/php.d/php.ini owner=root group=root mode=0644
+#  notify:
+#  - restart httpd
 
-- name: update php-opcache config
-  copy:
-    src: "10-opcache.ini"
-    dest: /etc/php.d/10-opcache.ini
-    owner: root
-    group: root
-    mode: 0644
+#- name: update php-opcache config
+#  copy:
+#    src: "10-opcache.ini"
+#    dest: /etc/php.d/10-opcache.ini
+#    owner: root
+#    group: root
+#    mode: 0644
