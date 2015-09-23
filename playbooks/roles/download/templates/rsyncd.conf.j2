@@ -4,3 +4,8 @@ read only = yes
 [openvz-download]
 path = {{ download_destination }}
 comment = OpenVZ download site
+exclude = /.repo /.kir /.tmp-rsync kernel/branches/rhel6-2.6.32-testing/debuginfo/ kernel/branches/rhel6-2.6.32/debuginfo/
+
+[virtuozzo-download]
+path = /var/www/html/virtuozzo
+comment = OpenVZ download site
