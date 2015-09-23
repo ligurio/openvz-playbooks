@@ -2,6 +2,5 @@
 upstream_mirror: download.openvz.org/openvz-download
 download_user: download
 download_group: download
-#download_server: eu.download.openvz.org
-download_server: ws6.qa.sw.ru
+download_server: eu.download.openvz.org
 download_destination: /var/www/html/download.openvz.org

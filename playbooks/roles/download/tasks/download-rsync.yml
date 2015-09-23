@@ -16,14 +16,12 @@
 # FIXME: probably we can just replace 'yes' to 'no' to enable rsync
 - name: enable rsync in xinetd
   copy: src=rsync-xinetd.d dest=/etc/xinetd.d/rsync mode=644
-  notify:
-  - restart xinetd
+  notify: restart xinetd
   sudo: yes
 
 - name: copy the rsync config file
   template: src=rsyncd.conf.j2 dest=/etc/rsyncd.conf mode=644
-  notify:
-  - restart xinetd
+  notify: restart xinetd
   sudo: yes
 
 - name: set xinetd running/enabled

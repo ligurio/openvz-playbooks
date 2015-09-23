@@ -11,16 +11,19 @@
   user: name={{ download_user }} home={{ download_destination }} comment="OpenVZ download server" createhome=yes system=yes shell=/sbin/nologin
   sudo: yes
 
-- name: change rights on directory
-  command: chgrp -R download {{ download_destination }}
+- name: add apache to group
+  user: name=apache append=yes groups={{ download_group }}
   sudo: yes
-# FIXME
-#  file:
-#    path: "{{ jenkins_home }}/updates"
-#    owner: "{{ jenkins_user }}"
-#    group: "{{ jenkins_group }}"
-#    mode: 0755
-#    state: directory
+
+- name: change rights on directory
+#command: chgrp -R download {{ download_destination }}
+  file:
+    path: "{{ download_destination }}"
+    owner: "{{ download_user }}"
+    group: "{{ download_group }}"
+    mode: 0755
+    state: directory
+  sudo: yes
 
 # FIXME: add users accounts to /etc/passwd, /etc/group
 
