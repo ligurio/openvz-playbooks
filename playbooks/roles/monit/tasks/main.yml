@@ -1,0 +1,14 @@
+---
+
+- name: import gpg-keys
+  command: rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt
+
+- name: install repositories
+  yum: name=http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm state=installed
+
+- name: make sure monit is installed
+  yum: name=monit state=present
+
+- name: copy the monit config file
+  copy: src=monit.conf dest=/etc/monit.conf
+  notify: reload monit
