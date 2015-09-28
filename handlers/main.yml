@@ -57,3 +57,11 @@
 - name: newaliases
   sudo: yes
   command: /usr/bin/newaliases
+
+- name: restart monit
+  sudo: yes
+  service: name=monit state=restarted
+
+- name: restart crond
+  sudo: yes
+  service: name=crond state=restarted

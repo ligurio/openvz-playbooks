@@ -14,6 +14,10 @@ jenkins_plugins:
   - custom-view-tabs
   - embeddable-build-status
   - job-import-plugin
+  - github
+  - github-api
+  - plain-credentials
+  - multiple-scms
 jenkins_java: /usr/bin/java
 jenkins_user: jenkins
 jenkins_group: jenkins
