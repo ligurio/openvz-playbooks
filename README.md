@@ -2,7 +2,7 @@
 
 ansible playbooks/files/etc repository for [OpenVZ](https://openvz.org/)
 infrastructure:
-{bugzilla,[ci](https://ci.openvz.org/),[docs](https://docs.openvz.org/),[download](https://download.openvz.org/),[forum](https://forum.openvz.org/),git,[mirrors](http://mirrors.openvz.org/),[planet](http://planet.openvz.org/),[stats](https://stats.openvz.org/),[store](http://store.openvz.org/),[vault](http://vault.openvz.org/),[www](https://www.openvz.org/),[wiki](https://wiki.openvz.org/)}.openvz.org
+{bugzilla,[ci](https://ci.openvz.org/),[docs](https://docs.openvz.org/),[download](https://download.openvz.org/),[forum](https://forum.openvz.org/),git,[lists](https://lists.openvz.org/),[mirrors](http://mirrors.openvz.org/),[planet](http://planet.openvz.org/),[stats](https://stats.openvz.org/),[store](http://store.openvz.org/),[vault](http://vault.openvz.org/),[www](https://www.openvz.org/),[wiki](https://wiki.openvz.org/)}.openvz.org
 
 OpenVZ is a powerful, easy to use, cost effective server virtualization solution
 that empowers PC users with the ability to create completely networked, fully
