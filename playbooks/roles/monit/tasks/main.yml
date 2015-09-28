@@ -1,14 +1,23 @@
 ---
 
-- name: import gpg-keys
-  command: rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt
+- name: import GPG key
+  rpm_key: state=present key=http://apt.sw.be/RPM-GPG-KEY.dag.txt
+  sudo: yes
 
-- name: install repositories
-  yum: name=http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm state=installed
+- name: install repository
+  yum: name=http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm state=present
+  sudo: yes
 
 - name: make sure monit is installed
   yum: name=monit state=present
+  sudo: yes
 
 - name: copy the monit config file
-  copy: src=monit.conf dest=/etc/monit.conf
-  notify: reload monit
+  copy: >
+    src=monit.conf
+    dest=/etc/monit.conf
+    owner=root
+    group=root
+    mode=0600
+  notify: restart monit
+  sudo: yes

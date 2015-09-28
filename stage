@@ -31,6 +31,9 @@ ansible.stage
 [stats]
 ansible.stage
 
+[status]
+ansible.stage
+
 [store]
 ansible.stage
 

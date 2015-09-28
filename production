@@ -34,6 +34,9 @@ www.openvz.org
 [stats]
 stats.openvz.org ansible_ssh_port=2231
 
+[status]
+www.openvz.org ansible_ssh_port=2231
+
 [store]
 www.openvz.org	ansible_ssh_port=2231
 
