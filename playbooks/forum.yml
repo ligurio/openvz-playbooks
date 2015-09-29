@@ -7,4 +7,3 @@
     - mysql
     - fudforum
     - yum-cron
-  gather_facts: no

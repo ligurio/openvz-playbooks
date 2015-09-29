@@ -6,4 +6,3 @@
     - download
     - download-mirror
     - yum-cron
-  gather_facts: no

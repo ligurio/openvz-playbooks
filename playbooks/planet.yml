@@ -5,4 +5,3 @@
     - apache
     - planet
     - yum-cron
-  gather_facts: no

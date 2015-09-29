@@ -5,4 +5,3 @@
     - apache
     - download
     - yum-cron
-  gather_facts: no

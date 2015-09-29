@@ -5,4 +5,3 @@
     - apache
     - git
     - yum-cron
-  gather_facts: no
