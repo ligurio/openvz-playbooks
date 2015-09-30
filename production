@@ -9,6 +9,7 @@ docs.openvz.org
 
 [download]
 eu.download.openvz.org
+us.download.openvz.org
 
 [download-mirror]
 eu.download.openvz.org
@@ -38,14 +39,36 @@ stats.openvz.org ansible_ssh_port=2231
 www.openvz.org ansible_ssh_port=2231
 
 [store]
-www.openvz.org	ansible_ssh_port=2231
+www.openvz.org ansible_ssh_port=2231
 
 [vault]
 vault.openvz.org
 
 [wiki]
-wiki.openvz.org
-criu.org
+wiki.openvz.org ansible_ssh_port=2231
+wiki.criu.org ansible_ssh_port=2231
 
 [www]
 www.openvz.org
+
+[openvz:children]
+bugzilla
+ci
+docs
+download
+download-mirror
+forum
+git
+static
+mail
+mirmon
+planet
+stats
+status
+store
+vault
+wiki
+www
+
+[criu]
+wiki.criu.org

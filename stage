@@ -19,6 +19,9 @@ ansible.stage
 [git]
 ansible.stage
 
+[static]
+ansible.stage
+
 [mail]
 ansible.stage
 
@@ -44,4 +47,26 @@ ansible.stage
 ansible.stage
 
 [www]
+ansible.stage
+
+[openvz:children]
+bugzilla
+ci
+docs
+download
+download-mirror
+forum
+git
+static
+mail
+mirmon
+planet
+stats
+status
+store
+vault
+wiki
+www
+
+[criu]
 ansible.stage
