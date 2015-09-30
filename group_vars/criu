@@ -1,0 +1,4 @@
+---
+ssl_cert: criu.org.crt
+ssl_key: criu.org.key
+ssl_chain: criu-essential.ca-bundle
