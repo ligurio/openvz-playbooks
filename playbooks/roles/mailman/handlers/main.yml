@@ -1,0 +1,11 @@
+########################################
+# Handlers for restarting services
+#
+
+- name: restart mailman
+  sudo: yes
+  action: service name=mailman state=restarted
+
+- name: newaliases
+  sudo: yes
+  command: /usr/bin/newaliases

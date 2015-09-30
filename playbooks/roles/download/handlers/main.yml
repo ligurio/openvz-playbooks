@@ -1,0 +1,15 @@
+########################################
+# Handlers for restarting services
+#
+
+- name: restart apache
+  sudo: yes
+  action: service name=httpd state=reloaded
+
+- name: restart vsftpd
+  sudo: yes
+  action: service name=vsftpd state=restarted
+
+- name: restart xinetd
+  sudo: yes
+  action: service name=xinetd state=restarted
