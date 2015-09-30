@@ -1,0 +1,13 @@
+---
+ssl_cert:
+  download.openvz.org.crt
+  openvz.org.crt
+ssl_key:
+  download.openvz.org.key
+  openvz.org.key
+ssl_chain: essential.ca-bundle
+
+upstream_mirror: download.openvz.org/openvz-download
+download_destination: /var/www/html/
+download_user: upload
+download_group: upload

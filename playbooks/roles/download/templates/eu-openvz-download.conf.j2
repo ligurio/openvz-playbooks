@@ -1,0 +1,24 @@
+NameVirtualHost *:80
+NameVirtualHost *:443
+
+<VirtualHost *:80>
+ ServerName		eu.download.openvz.org
+ ServerAlias	eu.download.openvz.org
+ ServerAdmin	sergeyb@openvz.org
+
+ DocumentRoot	{{ download_destination }}
+</VirtualHost>
+
+<VirtualHost *:443>
+ ServerName		eu.download.openvz.org
+ ServerAlias	eu.download.openvz.org
+ ServerAdmin	sergeyb@openvz.org
+
+ DocumentRoot	{{ download_destination }}
+
+ SSLEngine on
+ SSLProtocol all -SSLv2 -SSLv3
+ SSLCertificateFile /etc/pki/tls/certs/download.openvz.org.crt
+ SSLCertificateKeyFile /etc/pki/tls/private/download.openvz.org.key
+ SSLCertificateChainFile /etc/pki/tls/certs/essential.ca-bundle
+</VirtualHost>
