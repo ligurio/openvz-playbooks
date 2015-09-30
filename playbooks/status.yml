@@ -1,0 +1,6 @@
+---
+- hosts: status
+  roles:
+    - common
+    - monit
+    - yum-cron
