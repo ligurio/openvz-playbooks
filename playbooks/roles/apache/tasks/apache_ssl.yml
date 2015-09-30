@@ -1,6 +1,4 @@
 ---
-- name: include variables
-  include_vars: "apache.yml"
 
 - name: install mod_ssl
   yum: pkg=mod_ssl state=installed

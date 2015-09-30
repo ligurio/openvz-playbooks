@@ -6,10 +6,6 @@
   sudo: yes
   action: service name=httpd state=reloaded
 
-- name: reload httpd
-  sudo: yes
-  action: service name=httpd state=reloaded
-
 - name: restart crond
   sudo: yes
   action: service name=crond state=restarted
