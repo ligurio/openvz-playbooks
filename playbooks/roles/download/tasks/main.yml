@@ -1,8 +1,5 @@
 ---
 
-- name: include variables
-  include_vars: "../../download-mirror/vars/main.yml"
-
 - name: add group
   group: name={{ download_group }} system=yes state=present
   sudo: yes
@@ -16,7 +13,6 @@
   sudo: yes
 
 - name: change rights on directory
-#command: chgrp -R download {{ download_destination }}
   file:
     path: "{{ download_destination }}"
     owner: "{{ download_user }}"
@@ -24,6 +20,8 @@
     mode: 0755
     state: directory
   sudo: yes
+  when: inventory_hostname == "eu.download.openvz.org"
+# FIXME: it's a hack ^^^^^^
 
 # FIXME: add users accounts to /etc/passwd, /etc/group
 

@@ -2,8 +2,19 @@
 # tasks to setup an http server
 
 - name: copy the openvz mirror http config file
-  template: src=openvz-download.conf.j2 dest=/etc/httpd/conf.d/openvz-download.conf
+  template: src=eu-openvz-download.conf.j2 dest=/etc/httpd/conf.d/openvz-download.conf
   sudo: yes
+  when: inventory_hostname == "eu.download.openvz.org"
+
+- name: copy the openvz mirror http config file
+  template: src=us-openvz-download.conf.j2 dest=/etc/httpd/conf.d/openvz-download.conf
+  sudo: yes
+  when: inventory_hostname == "us.download.openvz.org"
+
+- name: copy the openvz mirror http config file
+  template: src=download.conf.j2 dest=/etc/httpd/conf.d/download.conf
+  sudo: yes
+  when: inventory_hostname == "us.download.openvz.org"
 
 - name: copy the openvz mirror http config file
   copy: src=types.conf dest=/etc/httpd/conf.d/types.conf

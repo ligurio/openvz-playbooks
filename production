@@ -9,7 +9,7 @@ docs.openvz.org
 
 [download]
 eu.download.openvz.org
-us.download.openvz.org
+us.download.openvz.org ansible_ssh_port=2231
 
 [download-mirror]
 eu.download.openvz.org

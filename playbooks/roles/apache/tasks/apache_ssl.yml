@@ -21,20 +21,24 @@
 
 - name: install ssl certificate
   copy: >
-    src={{ ssl_cert }}
+    src={{ item }}
     dest=/etc/pki/tls/certs/{{ ssl_cert }}
     owner=root
     group=root
     mode=0600
+  with_items:
+     - "{{ ssl_cert }}"
   notify: restart apache
   sudo: yes
 
 - name: install ssl key
   copy: >
-    src={{ ssl_key }}
+    src={{ item }}
     dest=/etc/pki/tls/private/{{ ssl_key }}
     owner=root
     group=root
     mode=0400
+  with_items:
+     - "{{ ssl_key }}"
   notify: restart apache
   sudo: yes

@@ -1,13 +1,12 @@
 NameVirtualHost *:80
 
 <VirtualHost *:80>
- ServerName		{{ download_server }}
+ ServerName		download.openvz.org
  ServerAlias	download.openvz.org
  ServerAdmin	kir@openvz.org
 
- DocumentRoot /var/www/html
+ DocumentRoot	{{ download_destination }}
 </VirtualHost>
-
 
 <VirtualHost *:80>
  ServerName     download.openvirtuozzo.org

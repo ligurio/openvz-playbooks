@@ -2,7 +2,7 @@
 # Handlers for restarting services
 #
 
-- name: reload apache
+- name: restart apache
   sudo: yes
   action: service name=httpd state=reloaded
 
