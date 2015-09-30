@@ -15,7 +15,7 @@
 
 #- name: install php5-redis
 #  yum: pkg=php5-redis force=yes state=present
-  
+
 #- name: create /var/www/openvz-wiki
 #  file: path=/var/www/openvz-wiki state=directory owner=mediawiki
 

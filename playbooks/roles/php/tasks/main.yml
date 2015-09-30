@@ -5,13 +5,17 @@
 - name: ensure php packages are installed
   action: yum name={{ item }} state=present
   with_items:
-    - php
+    - php-cli
     - php-xml
+    - php-pecl-apc
+    - php-common
+    - php-pdo
     - php-mysql
-    - php-devel
+    - php-lightopenid
+    - php-pear
+    - php-pgsql
+    - php
     - php-gd
-    - php-opcache
-    - python-pygments
 
 #- name: create mysql user for mediawiki
 #  mysql_user:

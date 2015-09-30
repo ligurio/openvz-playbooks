@@ -5,39 +5,91 @@
 #  with_items:
 #    - /var/log/mediawiki/
 #    - /var/log/mediawiki/debuglogs/
-
-#- name: copy mediawiki settings from templates
-#  template: src={{item}} dest=/var/www/openvz-wiki/{{item|basename|replace('.j2','')}}
-#  with_fileglob:
-#    - ./localsettings/*.php.j2
-#  sudo: yes
-#  sudo_user: mediawiki
-#  notify:
-#    - Rebuild localisation cache
-
-#- name: copy mediawiki settings
-#  copy: src=LocalSettings.php-OpenVZ dest=/var/www/html/wiki-openvz/LocalSettings.php
-#  sudo: yes
-#  sudo_user: mediawiki
-#  notify:
-#    - Rebuild localisation cache
-
-#- name: copy mediawiki settings from files
-#  copy: src={{item}} dest=/var/www/openvz-wiki/{{item|basename}}
-#  with_fileglob:
-#    - ./localsettings/*.php
-#  sudo: yes
-#  sudo_user: mediawiki
-#  notify:
-#    - Rebuild localisation cache
-
-#- name: copy the www config file
-#  copy: src=criu-wiki.conf dest=/etc/httpd/conf.d/criu-wiki.conf
 #  notify:
 #    - restart apache
 
-#- name: copy robots.txt file
-#  copy: src=robots.txt dest=/var/www/html/wiki-openvz/robots.txt
+# TODO:
+# - php.conf
+# - static.conf
 
-#- name: copy favicon file
-#  copy: src=favicon.ico dest=/var/www/html/wiki-openvz/favicon.ico
+- name: copy robots.txt file
+  copy: src={{ inventory_hostname }}-robots.txt dest=/var/www/openvz-wiki/robots.txt
+  when: inventory_hostname == "wiki.openvz.org"
+
+- name: copy robots.txt file
+  copy: src={{ inventory_hostname }}-robots.txt dest=/var/www/criu-wiki/robots.txt
+  when: inventory_hostname == "wiki.criu.org"
+
+- name: copy favicon file
+  copy: src={{ inventory_hostname }}-favicon.ico dest=/var/www/openvz-wiki/favicon.ico
+  when: inventory_hostname == "wiki.openvz.org"
+
+- name: copy favicon file
+  copy: src={{ inventory_hostname }}-favicon.ico dest=/var/www/criu-wiki/favicon.ico
+  when: inventory_hostname == "wiki.criu.org"
+
+- name: copy mediawiki settings
+  copy: src={{ inventory_hostname }}-LocalSettings.php dest=/var/www/openvz-wiki/LocalSettings.php
+  sudo: yes
+#  sudo_user: mediawiki
+#  notify:
+#    - Rebuild localisation cache
+  when: inventory_hostname == "wiki.openvz.org"
+
+- name: copy mediawiki settings
+  copy: src={{ inventory_hostname }}-LocalSettings.php dest=/var/www/criu-wiki/LocalSettings.php
+  sudo: yes
+#  sudo_user: mediawiki
+#  notify:
+#    - Rebuild localisation cache
+  when: inventory_hostname == "wiki.criu.org"
+
+- name: copy mediawiki admin settings
+  copy: src={{ inventory_hostname }}-AdminSettings.php dest=/var/www/openvz-wiki/AdminSettings.php
+  sudo: yes
+#  sudo_user: mediawiki
+#  notify:
+#    - Rebuild localisation cache
+  when: inventory_hostname == "wiki.openvz.org"
+
+- name: copy http config file
+  copy: src=openvz-wiki-ssl.conf dest=/etc/httpd/conf.d/openvz-wiki-ssl.conf
+  sudo: yes
+  when: inventory_hostname == "wiki.openvz.org"
+  notify: restart apache
+
+- name: copy http config file
+  copy: src=openvz-wiki.conf dest=/etc/httpd/conf.d/openvz-wiki.conf
+  sudo: yes
+  when: inventory_hostname == "wiki.openvz.org"
+  notify: restart apache
+
+- name: copy http config file
+  copy: src=openvz-wiki.inc dest=/etc/httpd/conf.d/openvz-wiki.inc
+  sudo: yes
+  when: inventory_hostname == "wiki.openvz.org"
+  notify: restart apache
+
+- name: copy http config file
+  copy: src=openvz.org.conf dest=/etc/httpd/conf.d/openvz.org.conf
+  sudo: yes
+  when: inventory_hostname == "wiki.openvz.org"
+  notify: restart apache
+
+- name: copy http config file
+  copy: src=redirects-openvz.conf dest=/etc/httpd/conf.d/redirects.conf
+  sudo: yes
+  when: inventory_hostname == "wiki.openvz.org"
+  notify: restart apache
+
+- name: copy http config file
+  copy: src=redirects-openvz.inc dest=/etc/httpd/conf.d/redirects.inc
+  sudo: yes
+  when: inventory_hostname == "wiki.openvz.org"
+  notify: restart apache
+
+- name: copy http config file
+  copy: src=criu-wiki.conf dest=/etc/httpd/conf.d/criu-wiki.conf
+  sudo: yes
+  when: inventory_hostname == "wiki.criu.org"
+  notify: restart apache
