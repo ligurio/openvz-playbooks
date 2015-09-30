@@ -36,11 +36,6 @@
   cron: user=planet-user name="update planet feeds" minute="00" job="sh -c \"cd /var/www/planet.openvz.org/ && git pull && make\"" cron_file=openvz-planet-autoupdate
   sudo: yes
 
-- name: disable mail in cron task
-  lineinfile: dest=/etc/sysconfig/crond regexp="^CRONDARGS=" line="CRONDARGS=-s -m off"
-  notify: restart crond
-  sudo: yes
-
 - name: copy the planet http config file
   copy: src=planet.conf dest=/etc/httpd/conf.d/planet.conf
   notify: restart apache

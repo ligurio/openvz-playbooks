@@ -27,7 +27,7 @@
   sudo_user: mirrors-user
 
 - name: update mirror lists via crontab
-  cron: user=mirrors-user name="check mirrors" minute="00" job="cd /var/www/mirrors.openvz.org/source && git pull && make" cron_file=openvz-mirrorlists-autoupdate
+  cron: user=mirrors-user name="check mirrors" minute="00" job="sh -c \"cd /var/www/mirrors.openvz.org/source && git pull && make\"" cron_file=openvz-mirrorlists-autoupdate
   sudo: yes
 
 - name: generate timestamp via crontab
