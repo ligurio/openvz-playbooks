@@ -1,5 +1,7 @@
 ---
 
+- include: playbooks/bugzilla.yml
+- include: playbooks/ci.yml
 - include: playbooks/docs.yml
 - include: playbooks/download.yml
 - include: playbooks/download-mirror.yml
@@ -9,6 +11,7 @@
 - include: playbooks/mirmon.yml
 - include: playbooks/planet.yml
 - include: playbooks/stats.yml
+- include: playbooks/status.yml
 - include: playbooks/store.yml
 - include: playbooks/vault.yml
 - include: playbooks/wiki.yml
