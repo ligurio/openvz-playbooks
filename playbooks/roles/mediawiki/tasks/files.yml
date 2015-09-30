@@ -68,6 +68,18 @@
   when: inventory_hostname == "wiki.criu.org"
   notify: restart apache
 
+- name: copy ssl http config file
+  copy: src=criu-wiki.conf dest=/etc/httpd/conf.d/criu-wiki.conf
+  sudo: yes
+  when: inventory_hostname == "wiki.criu.org"
+  notify: restart apache
+
+- name: copy http config file
+  copy: src=criu-wiki.inc dest=/etc/httpd/conf.d/criu-wiki.inc
+  sudo: yes
+  when: inventory_hostname == "wiki.criu.org"
+  notify: restart apache
+
 - name: copy http config file
   copy: src=openvz-wiki.conf dest=/etc/httpd/conf.d/openvz-wiki.conf
   sudo: yes
@@ -96,10 +108,4 @@
   copy: src=redirects-openvz.inc dest=/etc/httpd/conf.d/redirects.inc
   sudo: yes
   when: inventory_hostname == "wiki.openvz.org"
-  notify: restart apache
-
-- name: copy http config file
-  copy: src=criu-wiki.conf dest=/etc/httpd/conf.d/criu-wiki.conf
-  sudo: yes
-  when: inventory_hostname == "wiki.criu.org"
   notify: restart apache
