@@ -33,7 +33,7 @@
   sudo_user: planet-user
 
 - name: setup crontab
-  cron: user=planet-user name="update planet feeds" minute="00" job="sh -c \"cd /var/www/planet.openvz.org/ && git pull && make\"" cron_file=openvz-planet-autoupdate
+  cron: user=planet-user name="update planet feeds" minute="00" job="sh -c \"cd /var/www/planet.openvz.org/ && git pull && make\" > /dev/null 2>&1" cron_file=openvz-planet-autoupdate
   sudo: yes
 
 - name: copy the planet http config file
