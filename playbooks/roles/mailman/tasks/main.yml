@@ -1,6 +1,8 @@
 ---
 # Configuration for Mailman 2
 
+- include_vars: ../../../../vars/global.yml
+
 #
 # Packages
 #
@@ -12,7 +14,7 @@
   sudo: yes
 
 - name: update mail aliases
-  copy: src=aliases dest=/etc/aliases owner=root group=root mode=644
+  copy: src={{ private }}/playbooks/roles/mailman/files/aliases dest=/etc/aliases owner=root group=root mode=644
   sudo: yes
   notify: newaliases
 

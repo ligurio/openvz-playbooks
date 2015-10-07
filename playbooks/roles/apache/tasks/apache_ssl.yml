@@ -1,5 +1,7 @@
 ---
 
+- include_vars: ../../../../vars/global.yml
+
 - name: install mod_ssl
   yum: pkg=mod_ssl state=installed
   sudo: yes
@@ -11,7 +13,7 @@
 
 - name: install certificate ssl intermediate cert
   copy: >
-    src={{ ssl_chain }}
+    src={{ private }}/playbooks/roles/apache/files/{{ ssl_chain }}
     dest=/etc/pki/tls/certs/{{ ssl_chain }}
     owner=root
     group=root
@@ -21,7 +23,7 @@
 
 - name: install ssl certificate
   copy: >
-    src={{ item }}
+    src={{ private }}/playbooks/roles/apache/files/{{ item }}
     dest=/etc/pki/tls/certs/{{ ssl_cert }}
     owner=root
     group=root
@@ -33,7 +35,7 @@
 
 - name: install ssl key
   copy: >
-    src={{ item }}
+    src={{ private }}/playbooks/roles/apache/files/{{ item }}
     dest=/etc/pki/tls/private/{{ ssl_key }}
     owner=root
     group=root
