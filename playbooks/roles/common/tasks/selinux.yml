@@ -2,16 +2,16 @@
 - name: ensure python-selinux is installed
   action: yum name=libselinux-python state=installed
   sudo: yes
-  when: ansible_virtualization_type != 'openvz'
+  when: ansible_virtualization_type == 'openvz' and ansible_virtualization_role == 'host'
 
 - name: set selinux to permissive
   action: selinux policy=targeted state=permissive
   ignore_errors: True
   sudo: yes
-  when: ansible_virtualization_type != 'openvz'
+  when: ansible_virtualization_type == 'openvz' and ansible_virtualization_role == 'host'
 
 - name: ensure selinux is turned off
   command: /usr/sbin/setenforce 0
   ignore_errors: True
   sudo: yes
-  when: ansible_virtualization_type != 'openvz'
+  when: ansible_virtualization_type == 'openvz' and ansible_virtualization_role == 'host'
