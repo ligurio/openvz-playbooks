@@ -18,6 +18,7 @@ jenkins_plugins:
   - github-api
   - plain-credentials
   - multiple-scms
+  - googleanalytics
 jenkins_java: /usr/bin/java
 jenkins_user: jenkins
 jenkins_group: jenkins
