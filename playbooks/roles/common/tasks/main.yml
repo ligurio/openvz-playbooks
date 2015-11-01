@@ -6,6 +6,7 @@
 #
 
 - include: selinux.yml
+- include: users.yml
 
 - name: dist pkgs to install
   yum: state=present name={{ item }}
