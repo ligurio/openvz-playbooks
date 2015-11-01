@@ -1,6 +1,6 @@
 ---
 #
-# Setup mysql server. 
+# Setup mysql server.
 # https://infrastructure.fedoraproject.org/cgit/ansible.git/tree/roles/mariadb_server
 #
 - name: install mysql server packages

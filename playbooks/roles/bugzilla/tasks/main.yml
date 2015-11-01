@@ -5,8 +5,8 @@
   copy: src=bugzilla-redirects.conf dest=/etc/httpd/conf.d/bugzilla-redirects.conf
   sudo: yes
 
-- name: copy the source mapping file
-  command: mkdir -p /usr/share/bugzilla/
+- name: create directory for mapping file
+  file: path=/usr/share/bugzilla/ state=directory mode=0755
   sudo: yes
 
 - name: copy the source mapping file

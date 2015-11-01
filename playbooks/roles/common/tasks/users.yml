@@ -3,14 +3,16 @@
 #  group: name=core-team state=present
 
 - name: Create accounts
-  user: name="{{ item.name }}" groups=sudo,wheel append=yes shell="{{ item.shell }}"
+  user: name="{{ item.name }}" groups=wheel append=yes shell="{{ item.shell }}"
   with_items:
       - { 'name':'sergeyb', 'shell':'/bin/bash' }
+  sudo: yes
 
 - name: Install ssh keys
   authorized_key: user="{{ item.user }}" key="{{ item.key }}"
   with_items:
       - { 'user':'sergeyb','key':'https://github.com/ligurio.keys' }
+  sudo: yes
 
 #- name: Setup passwordless sudo
 #  template: src=../../../templates/core-sudoers.j2 dest=/etc/sudoers.d/core-sudoers

@@ -21,13 +21,7 @@
   sudo: yes
 
 - name: checkout git repo with sources
-  git: repo=https://src.openvz.org/scm/ovz/openvz-planet.git dest=/var/www/planet.openvz.org
-  ignore_errors: True
-  sudo: yes
-  sudo_user: planet-user
-
-- name: checkout git submodule
-  command: git submodule update --init --recursive chdir=/var/www/planet.openvz.org/
+  git: repo=https://src.openvz.org/scm/ovz/openvz-planet.git dest=/var/www/planet.openvz.org track_submodules=no
   ignore_errors: True
   sudo: yes
   sudo_user: planet-user
