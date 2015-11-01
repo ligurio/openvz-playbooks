@@ -15,13 +15,14 @@ before_install:
   - sudo apt-get install ansible
 
 install:
-  - sudo pip install ansible
+  - sudo pip install ansible ansible-lint
 
 script:
   - echo localhost > hosts
   - ansible-playbook -i hosts --syntax-check --list-tasks site.yml
   # Check php script syntax
   - bash .travis.phplint.sh
+  - ansible-lint site.yml
 
 notifications:
   email:
