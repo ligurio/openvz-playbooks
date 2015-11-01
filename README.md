@@ -59,6 +59,7 @@ surprise you later.
 * OpenStreetMap: [wiki](http://wiki.openstreetmap.org/wiki/Servers)
 * OpenStack: [wiki](http://docs.openstack.org/infra/system-config/), [code](https://github.com/openstack-infra)
 * Mageia Linux: [code](http://gitweb.mageia.org/infrastructure/puppet/), [wiki](https://wiki.mageia.org/en/Sysadmin_Team)
+* Mozilla: [code](https://github.com/Mozilla-cIT/ansible-playbooks)
 
 ### How to contribute
 
