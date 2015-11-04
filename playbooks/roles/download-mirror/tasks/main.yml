@@ -14,5 +14,5 @@
   sudo: yes
 
 - name: setup crontab
-  cron: user="{{ download_user }}" name="Update OpenVZ download files" minute="00" hour="*/2" job="rsync -av --delete rsync://{{ upstream_mirror }} {{ download_destination }}/" cron_file=openvz-mirror-autoupdate
+  cron: user="{{ download_user }}" name="Update OpenVZ download files" minute="00" hour="*/2" job="rsync -avz --partial --progress --delete rsync://{{ upstream_mirror }} {{ download_destination }}/" cron_file=openvz-mirror-autoupdate
   sudo: yes
