@@ -1,8 +1,8 @@
 ---
 # tasks to setup a download server
 
-- name: Include variables
-  include_vars: "main.yml"
+#- name: Include variables
+#  include_vars: "main.yml"
 
 - name: add group
   group: name={{ download_group }} system=yes state=present
