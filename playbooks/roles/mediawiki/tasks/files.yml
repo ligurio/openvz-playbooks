@@ -13,48 +13,28 @@
 # - static.conf
 
 - name: copy robots.txt file
-  copy: src={{ inventory_hostname }}-robots.txt dest=/var/www/openvz-wiki/robots.txt
+  copy: src={{ inventory_hostname }}-robots.txt dest={{ mediawiki_directory }}/robots.txt
   sudo: yes
-  when: inventory_hostname == "wiki.openvz.org"
-
-- name: copy robots.txt file
-  copy: src={{ inventory_hostname }}-robots.txt dest=/var/www/criu-wiki/robots.txt
-  sudo: yes
-  when: inventory_hostname == "wiki.criu.org"
+  sudo_user: mediawiki
 
 - name: copy favicon file
-  copy: src={{ inventory_hostname }}-favicon.ico dest=/var/www/openvz-wiki/favicon.ico
+  copy: src={{ inventory_hostname }}-favicon.ico dest={{ mediawiki_directory }}/favicon.ico
   sudo: yes
-  when: inventory_hostname == "wiki.openvz.org"
+  sudo_user: mediawiki
 
-- name: copy favicon file
-  copy: src={{ inventory_hostname }}-favicon.ico dest=/var/www/criu-wiki/favicon.ico
-  when: inventory_hostname == "wiki.criu.org"
+- name: copy mediawiki settings
+  copy: src={{ inventory_hostname }}-LocalSettings.php dest={{ mediawiki_directory }}/LocalSettings.php
   sudo: yes
-
-#- name: copy mediawiki settings
-#  copy: src={{ inventory_hostname }}-LocalSettings.php dest=/var/www/openvz-wiki/LocalSettings.php
-#  sudo: yes
-#  sudo_user: mediawiki
+  sudo_user: mediawiki
 #  notify:
 #    - Rebuild localisation cache
-#  when: inventory_hostname == "wiki.openvz.org"
 
-#- name: copy mediawiki settings
-#  copy: src={{ inventory_hostname }}-LocalSettings.php dest=/var/www/criu-wiki/LocalSettings.php
-#  sudo: yes
-#  sudo_user: mediawiki
+- name: copy mediawiki admin settings
+  copy: src={{ inventory_hostname }}-AdminSettings.php dest={{ mediawiki_directory }}/AdminSettings.php
+  sudo: yes
+  sudo_user: mediawiki
 #  notify:
 #    - Rebuild localisation cache
-#  when: inventory_hostname == "wiki.criu.org"
-
-#- name: copy mediawiki admin settings
-#  copy: src={{ inventory_hostname }}-AdminSettings.php dest=/var/www/openvz-wiki/AdminSettings.php
-#  sudo: yes
-#  sudo_user: mediawiki
-#  notify:
-#    - Rebuild localisation cache
-#  when: inventory_hostname == "wiki.openvz.org"
 
 - name: copy ssl http config file
   copy: src=openvz-wiki-ssl.conf dest=/etc/httpd/conf.d/openvz-wiki-ssl.conf

@@ -157,3 +157,45 @@ extensions:
     dest: 'extensions/WikiEditor',
     version: ''
     }
+
+skins:
+  - {
+    repo: 'https://github.com/WikiWonders/filament.git',
+    dest: 'skins/filament',
+    version: 'master'
+    }
+  - {
+    repo: 'https://github.com/WikiWonders/foreground.git',
+    dest: 'skins/foreground',
+    version: 'master'
+    }
+  - {
+    repo: 'https://github.com/wikimedia/mediawiki-skins-erudite.git',
+    dest: 'skins/Erudite',
+    version: 'REL1_24'
+    }
+  - {
+    repo: 'https://github.com/wikimedia/mediawiki-skins-BlueSky.git',
+    dest: 'skins/BlueSky',
+    version: 'REL1_24'
+    }
+  - {
+    repo: 'https://github.com/wikimedia/mediawiki-skins-MonoBook',
+    dest: 'skins/MonoBook',
+    version: 'REL1_24'
+    }
+  - {
+    repo: 'https://github.com/wikimedia/mediawiki-skins-Vector',
+    dest: 'skins/Vector',
+    version: 'REL1_24'
+    }
+  - {
+    repo: 'https://github.com/wikimedia/mediawiki-skins-CologneBlue',
+    dest: 'skins/CologneBlue',
+    version: 'REL1_24'
+    }
+  - {
+    repo: 'https://github.com/wikimedia/mediawiki-skins-Modern',
+    dest: 'skins/Modern',
+    version: 'REL1_24'
+    }

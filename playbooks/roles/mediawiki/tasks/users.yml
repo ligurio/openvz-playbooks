@@ -1,11 +1,12 @@
-#- name: create group "mediawiki"
-#  group: name={{item.name}} state=present
-#  with_items:
-#  - mediawiki
-#  - mediawiki-ops
+---
 
-#- name: create user "mediawiki"
-#  user: name=mediawiki group=mediawiki shell=/bin/bash
+- name: create group mediawiki
+  group: name={{ item }} state=present
+  with_items:
+  - mediawiki
+
+- name: create user mediawiki
+  user: name=mediawiki group=mediawiki shell=/sbin/nologin createhome=no
 
 # This would perhaps be better named mediawiki-scripts?
 #- name: create user "www-scripts"

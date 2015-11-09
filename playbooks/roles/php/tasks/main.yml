@@ -11,9 +11,9 @@
     - php-common
     - php-pdo
     - php-mysql
-    - php-lightopenid
+#    - php-lightopenid
     - php-pear
-    - php-pgsql
+#    - php-pgsql
     - php
     - php-gd
 
