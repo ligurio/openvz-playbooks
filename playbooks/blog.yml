@@ -1,0 +1,7 @@
+---
+- hosts: blog
+  roles:
+    - common
+    - apache
+    - blog
+    - yum-cron

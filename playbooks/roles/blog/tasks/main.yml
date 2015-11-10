@@ -1,0 +1,7 @@
+---
+# tasks to setup redirects to OpenVZ blog
+
+- name: copy the http config file
+  copy: src=blog.conf dest=/etc/httpd/conf.d/blog.conf
+  notify: restart apache
+  sudo: yes
