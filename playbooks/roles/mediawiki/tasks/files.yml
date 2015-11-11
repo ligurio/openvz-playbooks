@@ -10,7 +10,6 @@
 
 # TODO:
 # - php.conf
-# - static.conf
 
 - name: copy robots.txt file
   copy: src={{ inventory_hostname }}-robots.txt dest={{ mediawiki_directory }}/robots.txt
@@ -86,6 +85,18 @@
 
 - name: copy http config file
   copy: src=redirects-openvz.inc dest=/etc/httpd/conf.d/redirects.inc
+  sudo: yes
+  when: inventory_hostname == "wiki.openvz.org"
+  notify: restart apache
+
+- name: copy static.openvz.org http config file
+  copy: src=static.conf dest=/etc/httpd/conf.d/static.conf
+  sudo: yes
+  when: inventory_hostname == "wiki.openvz.org"
+  notify: restart apache
+
+- name: copy .htaccess for static.openvz.org
+  copy: src=htaccess dest=/var/www/static.openvz.org/.htaccess
   sudo: yes
   when: inventory_hostname == "wiki.openvz.org"
   notify: restart apache
