@@ -8,5 +8,6 @@
 THIS IS AN OPENVZ SERVER.
 
 IF YOU WANT TO CHANGE SOMETHING HERE
-PLEASE CONTACT sergeyb@openvz.org FIRST.
+PLEASE DO IT IN OPENVZ PLAYBOOKS FIRST
+https://github.com/ligurio/openvz-playbooks
 
