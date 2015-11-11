@@ -1,0 +1,7 @@
+---
+
+ssl_cert: openvz.org.crt
+ssl_key: openvz.org.key
+ssl_chain: essential.ca-bundle
+
+mediawiki_directory: /var/www/openvz-wiki

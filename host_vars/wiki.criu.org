@@ -1,0 +1,7 @@
+---
+
+ssl_cert: criu.org.crt
+ssl_key: criu.org.key
+ssl_chain: essential.ca-bundle
+
+mediawiki_directory: /var/www/criu-wiki
