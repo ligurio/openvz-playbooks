@@ -19,12 +19,15 @@
 #- name: install php5-redis
 #  yum: pkg=php5-redis force=yes state=present
 
+- name: install git
+  yum: pkg=git state=present
+
 - name: create mediawiki directory
   file: path={{ mediawiki_directory }} state=directory owner=mediawiki
   sudo: yes
 
 - name: check out latest stable WMF branch of mediawiki
-  git: repo=https://github.com/Orain/mediawiki-core.git
+  git: repo=https://github.com/wikimedia/mediawiki
        dest="{{ mediawiki_directory }}"
        version=REL1_24
   sudo: yes

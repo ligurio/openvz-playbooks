@@ -22,14 +22,14 @@
   sudo_user: mediawiki
 
 - name: copy mediawiki settings
-  copy: src={{ inventory_hostname }}-LocalSettings.php dest={{ mediawiki_directory }}/LocalSettings.php
+  copy: src={{ private }}/playbooks/roles/mediawiki/files/{{ inventory_hostname }}-LocalSettings.php dest={{ mediawiki_directory }}/LocalSettings.php
   sudo: yes
   sudo_user: mediawiki
 #  notify:
 #    - Rebuild localisation cache
 
 - name: copy mediawiki admin settings
-  copy: src={{ inventory_hostname }}-AdminSettings.php dest={{ mediawiki_directory }}/AdminSettings.php
+  copy: src={{ private }}/playbooks/roles/mediawiki/files/{{ inventory_hostname }}-AdminSettings.php dest={{ mediawiki_directory }}/AdminSettings.php
   sudo: yes
   sudo_user: mediawiki
 #  notify:
@@ -94,6 +94,11 @@
   sudo: yes
   when: inventory_hostname == "wiki.openvz.org"
   notify: restart apache
+
+- name: create directory for static.openvz.org
+  file: path=/var/www/static.openvz.org/ state=directory mode=0755
+  when: inventory_hostname == "wiki.openvz.org"
+  sudo: yes
 
 - name: copy .htaccess for static.openvz.org
   copy: src=htaccess dest=/var/www/static.openvz.org/.htaccess

@@ -10,22 +10,22 @@ extensions:
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-CharInsert',
     dest: 'extensions/CharInsert',
-    version: ''
+    version: 'REL1_24'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-Cite',
     dest: 'extensions/Cite',
-    version: ''
+    version: 'REL1_24'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-ConfirmAccount',
     dest: 'extensions/ConfirmAccount',
-    version: ''
+    version: 'REL1_24'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-ConfirmEdit',
     dest: 'extensions/ConfirmEdit',
-    version: ''
+    version: 'REL1_24'
     }
 #  - {
 #    repo: 'https://github.com/jan-molak/mediawiki-CrowdAuthentication',
@@ -35,127 +35,127 @@ extensions:
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-Description2',
     dest: 'extensions/Description2',
-    version: ''
+    version: 'REL1_24'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-Gadgets',
     dest: 'extensions/Gadgets',
-    version: ''
+    version: 'REL1_24'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-googleAnalytics',
     dest: 'extensions/googleAnalytics',
-    version: ''
+    version: 'REL1_24'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-ImageMap',
     dest: 'extensions/ImageMap',
-    version: ''
+    version: 'REL1_24'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-InputBox',
     dest: 'extensions/InputBox',
-    version: ''
+    version: 'REL1_24'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-Interwiki',
     dest: 'extensions/Interwiki',
-    version: ''
+    version: 'REL1_24'
     }
   - {
     repo: 'https://github.com/rotsee/LinkAttributes/',
     dest: 'extensions/LinkAttributes',
-    version: ''
+    version: 'master'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-LocalisationUpdate',
     dest: 'extensions/LocalisationUpdate',
-    version: ''
+    version: 'REL1_24'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-LookupUser',
     dest: 'extensions/LookupUser',
-    version: ''
+    version: 'REL1_24'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-Math',
     dest: 'extensions/Math',
-    version: ''
+    version: 'REL1_24'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-Nuke',
     dest: 'extensions/Nuke',
-    version: ''
+    version: 'REL1_24'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-OpenGraphMeta',
     dest: 'extensions/OpenGraphMeta',
-    version: ''
+    version: 'REL1_24'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-OpenID',
     dest: 'extensions/OpenID',
-    version: ''
+    version: 'REL1_24'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-ParserFunctions',
     dest: 'extensions/ParserFunctions',
-    version: ''
+    version: 'REL1_24'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-Poem',
     dest: 'extensions/Poem',
-    version: ''
+    version: 'REL1_24'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-Renameuser',
     dest: 'extensions/Renameuser',
-    version: ''
+    version: 'REL1_24'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-RSS',
     dest: 'extensions/RSS',
-    version: ''
+    version: 'REL1_24'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-SidebarDonateBox',
     dest: 'extensions/SidebarDonateBox',
-    version: ''
+    version: 'REL1_24'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-SpamBlacklist',
     dest: 'extensions/SpamBlacklist',
-    version: ''
+    version: 'REL1_24'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-SyntaxHighlight_GeSHi',
     dest: 'extensions/SyntaxHighlight_GeSHi',
-    version: ''
+    version: 'REL1_24'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-TemplateData',
     dest: 'extensions/TemplateData',
-    version: ''
+    version: 'REL1_24'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-TitleBlacklist',
     dest: 'extensions/TitleBlacklist',
-    version: ''
+    version: 'REL1_24'
     }
   - {
     repo: 'https://github.com/bcoughlan/TwitterFBLike',
     dest: 'extensions/TwitterFBLike',
-    version: ''
+    version: 'master'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-WikiArticleFeeds',
     dest: 'extensions/WikiArticleFeeds',
-    version: ''
+    version: 'REL1_24'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-extensions-WikiEditor',
     dest: 'extensions/WikiEditor',
-    version: ''
+    version: 'REL1_24'
     }
 
 skins:
