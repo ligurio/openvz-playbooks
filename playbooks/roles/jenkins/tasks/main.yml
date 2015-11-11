@@ -26,6 +26,7 @@
   get_url:
     url: "{{ jenkins_repo_url }}"
     dest: /etc/yum.repos.d/jenkins.repo
+    sha256sum: bc78fd8593e8bec45fb752edbe699b9ebdb61174236e098e5a4ddc864fb52c32
   sudo: yes
 
 - name: add jenkins repo gpg key
