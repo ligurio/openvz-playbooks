@@ -19,6 +19,7 @@ jenkins_plugins:
   - plain-credentials
   - multiple-scms
   - googleanalytics
+  - tap
 jenkins_java: /usr/bin/java
 jenkins_user: jenkins
 jenkins_group: jenkins
