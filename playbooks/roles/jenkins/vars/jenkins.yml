@@ -20,6 +20,7 @@ jenkins_plugins:
   - multiple-scms
   - googleanalytics
   - tap
+  - matrix-combinations-parameter
 jenkins_java: /usr/bin/java
 jenkins_user: jenkins
 jenkins_group: jenkins
