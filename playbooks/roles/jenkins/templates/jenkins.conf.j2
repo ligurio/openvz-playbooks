@@ -22,7 +22,7 @@ NameVirtualHost *:443
         Order deny,allow
         Allow from all
     </Proxy>
-    ProxyPass         /  http://{{ jenkins_http_host }}:{{ jenkins_http_port }}/ nocanon
+    ProxyPass         /  http://{{ jenkins_http_host }}:{{ jenkins_http_port }}/ nocanon retry=1 acquire=3000 timeout=600 Keepalive=On
     ProxyPassReverse  /  http://{{ jenkins_http_host }}:{{ jenkins_http_port }}/
     ProxyPassReverse  /  http://{{ jenkins_http_host }}
     RequestHeader set X-Forwarded-Proto "https"
