@@ -1,0 +1,57 @@
+[blog]
+s155.qa.sw.ru
+
+[blog]
+www.openvz.org ansible_host=192.168.2.2 ansible_ssh_port=22
+
+[bugzilla]
+bugzilla.openvz.org ansible_host=192.168.2.2 ansible_ssh_port=22
+
+[ci]
+ci.openvz.org ansible_host=192.168.2.2 ansible_ssh_port=22
+
+[docs]
+docs.openvz.org ansible_host=192.168.2.2 ansible_ssh_port=22
+
+[download]
+eu.download.openvz.org ansible_host=192.168.2.2 ansible_ssh_port=22
+us.download.openvz.org ansible_host=192.168.2.2 ansible_ssh_port=22
+
+[download-mirror]
+eu.download.openvz.org ansible_host=192.168.2.2 ansible_ssh_port=22 
+
+[forum]
+forum.openvz.org ansible_host=192.168.2.2 ansible_ssh_port=22
+
+[git]
+www.openvz.org ansible_host=192.168.2.2 ansible_ssh_port=22
+
+[static]
+www.openvz.org ansible_host=192.168.2.2 ansible_ssh_port=22
+
+[mail]
+lists.openvz.org ansible_host=192.168.2.2 ansible_ssh_port=22
+
+[mirmon]
+mirrors.openvz.org ansible_host=192.168.2.2 ansible_ssh_port=22
+
+[planet]
+www.openvz.org ansible_host=192.168.2.2 ansible_ssh_port=22
+
+[stats]
+stats.openvz.org ansible_host=192.168.2.2 ansible_ssh_port=22
+
+[status]
+www.openvz.org ansible_host=192.168.2.2 ansible_ssh_port=22
+
+[store]
+www.openvz.org ansible_host=192.168.2.2 ansible_ssh_port=22
+
+[vault]
+vault.openvz.org
+
+[wiki]
+ts40.qa.sw.ru
+
+[www]
+www.openvz.org
