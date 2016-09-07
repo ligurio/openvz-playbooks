@@ -1,0 +1,5 @@
+---
+
+ssl_cert: server.crt
+ssl_key: server.key
+ssl_chain: essential.ca-bundle
