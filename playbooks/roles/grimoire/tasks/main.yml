@@ -1,0 +1,117 @@
+---
+
+# http://sysads.co.uk/2015/07/install-elasticsearch-1-7-x-and-kibana-4-1-x-on-centos-6-5/
+
+# installation of java 
+
+- name: download java
+  get_url: url="http://download.oracle.com/otn-pub/java/jdk/8u51-b16/jre-8u51-linux-x64.tar.gz" dest=/opt/jre-8u51-linux-x64.tar.gz mode=0440 headers='Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie' validate_certs=no
+  sudo: yes
+
+- name: unpack java archive
+  unarchive: src=jre-8*.tar.gz dest=/opt/
+  sudo: yes
+
+- name: set new java as default
+  command: sudo alternatives --install /usr/bin/java java /opt/jre1.8*/bin/java 1
+  sudo: yes
+
+# elasticsearch
+
+- name: import gpg key for elasticsearch repository
+  command: rpm --import http://packages.elasticsearch.org/GPG-KEY-elasticsearch
+
+- name: install yum repo file
+  copy: src=elasticsearch.repo dst=/etc/yum.repos.d/elasticsearch.repo
+  sudo: yes
+
+- name: installation of elasticsearch
+  command: yum -y install elasticsearch-1.7.0
+  sudo: yes
+
+- name: listen on localhost
+  command: replace "/etc/elasticsearch/elasticsearch.yml" “network.host:” and update to “network.host: localhost”
+  notify: elasticsearch
+
+- name: add elasticsearch service to autorun
+  command: chkconfig --levels 235 elasticsearch on
+  sudo: yes
+
+# kibana
+
+- name: download kibana
+  get_url: url="https://download.elastic.co/kibana/kibana/kibana-4.1.1-linux-x64.tar.gz" dest=/opt/kibana-4.1.1-linux-x64.tar.gz
+  sudo: yes
+
+- name: unpack
+  unarchive: src=/opt/kibana-4.1.1-linux-x64.tar.gz dest=/opt/kibana/
+  sudo: yes
+
+- name: replace address in kibana config file “0.0.0.0” to host: “localhost”
+  replace: kibana-4.1.1-linux-x64/config/kibana.yml
+  sudo: yes
+
+- name: download init file
+  get_url: url="https://raw.githubusercontent.com/cjcotton/init-kibana/master/kibana" dest="/etc/init.d/kibana"
+  sudo: yes
+
+- name: make init file executable
+  command: chmod +x /etc/init.d/kibana
+  sudo: yes
+
+- name: update config file
+  replace: KIBANA_BIN=/opt/kibana/bin/
+
+- name: update config file
+  replace: DAEMON_USER=kibana_user
+
+- name: /etc/init.d/kibana start
+
+# https://sites.google.com/site/arnamoyswebsite/Welcome/updates-news/howtoinstallandruncvsanaly2inubuntu1110
+# cvsanaly
+
+- name: install setuptools
+  yum:
+    python-setuptools.noarch
+    MySQL-python.x86_64
+    mysql.x86_64
+    mysql-server.x86_64
+
+- name: git repo repositoryhandler
+  git: https://github.com/MetricsGrimoire/RepositoryHandler
+
+- name: install repositoryhandler
+  command: python setup.py install
+
+- name: /usr/bin/mysqladmin -u root -h localhost.localdomain password '1q2w3e'
+
+- name: mysql service start
+  command: /etc/init.d/mysqld start
+
+- name: create database
+  command: "create database cvsanaly;"
+
+- name: get repo cvsanaly
+  git: https://github.com/MetricsGrimoire/CVSAnalY
+
+# sortinghat
+
+- name: checkout sorting hat
+  git: https://github.com/MetricsGrimoire/sortinghat
+
+- name: setup sortinghat
+  command: python setup.py install
+
+# $ mg2sh -d cvsanaly_os --source "openstack:scm" > openstack_scm.json
+# $ sortinghat load openstack_scm.json
+
+# grimoire-demo
+
+- name: install dependencies
+  yum: yum install python-pip.noarch python-dev python-devel
+
+- name: install python dependencies
+  command: pip install pandas jinja2 sqlalchemy
+
+- name: checkout grimoire-demo repository
+  git: https://github.com/ligurio/Grimoire-demo

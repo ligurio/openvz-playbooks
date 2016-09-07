@@ -1,0 +1,7 @@
+---
+- hosts: activity
+  roles:
+    - common
+#    - mysql
+    - grimoire
+    - yum-cron
