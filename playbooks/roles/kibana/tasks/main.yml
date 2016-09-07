@@ -1,0 +1,55 @@
+---
+
+- name: ensure htpasswd-related utilities are installed
+  yum: "pkg={{ item }} state=present enablerepo=epel"
+  with_items:
+    - httpd-tools
+    - python-passlib
+
+- name: download kibana
+  get_url:
+    url: https://download.elasticsearch.org/kibana/kibana/kibana-3.0.1.tar.gz
+    dest: "{{ workspace }}/kibana-3.0.1.tar.gz"
+
+- name: extract kibana
+  command: >
+    tar -C {{ workspace }} -xvzf {{ workspace }}/kibana-3.0.1.tar.gz
+    creates={{ kibana_root }}/config.js
+
+- name: ensure www directory exists
+  file:
+    path: /var/www
+    state: directory
+
+- name: move kibana into place
+  command: >
+    mv {{ workspace }}/kibana-3.0.1 {{ kibana_root }}
+    creates={{ kibana_root }}/config.js
+
+- name: copy kibana configuration
+  template:
+    src: config.js.j2
+    dest: "{{ kibana_root }}/config.js"
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart nginx
+
+- name: copy kibana nginx configuration
+  template:
+    src: kibana.conf.j2
+    dest: /etc/nginx/conf.d/kibana.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart nginx
+
+- name: create kibana user account
+  htpasswd:
+    path: /etc/nginx/conf.d/kibana.htpasswd
+    name: "{{ kibana_username }}"
+    password: "{{ kibana_password }}"
+    owner: root
+    group: "{{ nginx_user }}"
+    mode: 0640
+  notify: restart nginx
