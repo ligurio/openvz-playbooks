@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /w/
+Disallow: /Special:Search
+Disallow: /Special:Random
