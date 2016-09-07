@@ -1,0 +1,31 @@
+---
+
+# also see https://github.com/Traackr/ansible-elasticsearch
+
+- name: add elasticsearch gpg key
+  rpm_key:
+    key: http://packages.elasticsearch.org/GPG-KEY-elasticsearch
+    state: present
+
+- name: add elasticsearch repository
+  copy:
+    src: elasticsearch.repo
+    dest: /etc/yum.repos.d/elasticsearch.repo
+    mode: 0644
+
+- name: install elasticsearch
+  yum: pkg=elasticsearch state=installed
+
+- name: configure elasticsearch
+  lineinfile: >
+    dest=/etc/elasticsearch/elasticsearch.yml
+    regexp="{{ item.regexp }}"
+    line="{{ item.line }}"
+    state=present
+  with_items:
+    - { regexp: '^script\.disable_dynamic', line: 'script.disable_dynamic: true' }
+    - { regexp: 'network\.host', line: 'network.host: localhost' }
+  notify: restart elasticsearch
+
+- name: start elasticsearch
+  service: name=elasticsearch state=started enabled=yes
