@@ -1,6 +1,11 @@
 ---
 
-- include_vars: ../../../../vars/global.yml
+- name: use self-signed ssl certificate in case of stage servers
+  include_vars: self-signed-ssl-certificate.yml
+  when: ssl_chain is undefined
+
+- name: define path to private ansible artifacts
+  include_vars: ../../../../vars/global.yml
 
 - name: install mod_ssl
   yum: pkg=mod_ssl state=installed

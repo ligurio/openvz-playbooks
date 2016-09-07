@@ -12,24 +12,24 @@
 # - php.conf
 
 - name: copy robots.txt file
-  copy: src={{ inventory_hostname }}-robots.txt dest={{ mediawiki_directory }}/robots.txt
+  copy: src={{ project }}-robots.txt dest={{ mediawiki_directory }}/robots.txt
   sudo: yes
   sudo_user: mediawiki
 
 - name: copy favicon file
-  copy: src={{ inventory_hostname }}-favicon.ico dest={{ mediawiki_directory }}/favicon.ico
+  copy: src={{ project }}-favicon.ico dest={{ mediawiki_directory }}/favicon.ico
   sudo: yes
   sudo_user: mediawiki
 
 - name: copy mediawiki settings
-  copy: src={{ private }}/playbooks/roles/mediawiki/files/{{ inventory_hostname }}-LocalSettings.php dest={{ mediawiki_directory }}/LocalSettings.php
+  copy: src={{ private }}/playbooks/roles/mediawiki/files/{{ project }}-LocalSettings.php dest={{ mediawiki_directory }}/LocalSettings.php
   sudo: yes
   sudo_user: mediawiki
 #  notify:
 #    - Rebuild localisation cache
 
 - name: copy mediawiki admin settings
-  copy: src={{ private }}/playbooks/roles/mediawiki/files/{{ inventory_hostname }}-AdminSettings.php dest={{ mediawiki_directory }}/AdminSettings.php
+  copy: src={{ private }}/playbooks/roles/mediawiki/files/{{ project }}-AdminSettings.php dest={{ mediawiki_directory }}/AdminSettings.php
   sudo: yes
   sudo_user: mediawiki
 #  notify:
@@ -38,70 +38,70 @@
 - name: copy ssl http config file
   copy: src=openvz-wiki-ssl.conf dest=/etc/httpd/conf.d/openvz-wiki-ssl.conf
   sudo: yes
-  when: inventory_hostname == "wiki.openvz.org"
+  when: project == "openvz"
   notify: restart apache
 
 - name: copy ssl http config file
   copy: src=criu-wiki-ssl.conf dest=/etc/httpd/conf.d/criu-wiki-ssl.conf
   sudo: yes
-  when: inventory_hostname == "wiki.criu.org"
+  when: project == "criu"
   notify: restart apache
 
 - name: copy ssl http config file
   copy: src=criu-wiki.conf dest=/etc/httpd/conf.d/criu-wiki.conf
   sudo: yes
-  when: inventory_hostname == "wiki.criu.org"
+  when: project == "criu"
   notify: restart apache
 
 - name: copy http config file
   copy: src=criu-wiki.inc dest=/etc/httpd/conf.d/criu-wiki.inc
   sudo: yes
-  when: inventory_hostname == "wiki.criu.org"
+  when: project == "criu"
   notify: restart apache
 
 - name: copy http config file
   copy: src=openvz-wiki.conf dest=/etc/httpd/conf.d/openvz-wiki.conf
   sudo: yes
-  when: inventory_hostname == "wiki.openvz.org"
+  when: project == "openvz"
   notify: restart apache
 
 - name: copy http config file
   copy: src=openvz-wiki.inc dest=/etc/httpd/conf.d/openvz-wiki.inc
   sudo: yes
-  when: inventory_hostname == "wiki.openvz.org"
+  when: project == "openvz"
   notify: restart apache
 
 - name: copy http config file
   copy: src=openvz.org.conf dest=/etc/httpd/conf.d/openvz.org.conf
   sudo: yes
-  when: inventory_hostname == "wiki.openvz.org"
+  when: project == "openvz"
   notify: restart apache
 
 - name: copy http config file
   copy: src=redirects-openvz.conf dest=/etc/httpd/conf.d/redirects.conf
   sudo: yes
-  when: inventory_hostname == "wiki.openvz.org"
+  when: project == "openvz"
   notify: restart apache
 
 - name: copy http config file
   copy: src=redirects-openvz.inc dest=/etc/httpd/conf.d/redirects.inc
   sudo: yes
-  when: inventory_hostname == "wiki.openvz.org"
+  when: project == "openvz"
   notify: restart apache
 
 - name: copy static.openvz.org http config file
   copy: src=static.conf dest=/etc/httpd/conf.d/static.conf
   sudo: yes
-  when: inventory_hostname == "wiki.openvz.org"
-  notify: restart apache
+  when: project == "openvz"
 
-- name: create directory for static.openvz.org
+- name: create directory for log files of static.openvz.org
   file: path=/var/www/static.openvz.org/ state=directory mode=0755
-  when: inventory_hostname == "wiki.openvz.org"
+  when: project == "openvz"
   sudo: yes
+  notify: restart apache
 
 - name: copy .htaccess for static.openvz.org
   copy: src=htaccess dest=/var/www/static.openvz.org/.htaccess
   sudo: yes
-  when: inventory_hostname == "wiki.openvz.org"
+  when: project == "openvz"
   notify: restart apache

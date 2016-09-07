@@ -1,4 +1,13 @@
 ---
+
+- name: include variables
+  include_vars: "wiki.criu.org"
+  when: project == "criu"
+
+- name: include variables
+  include_vars: "wiki.openvz.org"
+  when: project == "openvz"
+
 - include: users.yml
 - include: packages.yml
 - include: files.yml

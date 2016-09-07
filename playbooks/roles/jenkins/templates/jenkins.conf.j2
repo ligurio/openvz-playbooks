@@ -24,7 +24,6 @@ NameVirtualHost *:443
     </Proxy>
     ProxyPass         /  http://{{ jenkins_http_host }}:{{ jenkins_http_port }}/ nocanon retry=1 acquire=3000 timeout=600 Keepalive=On
     ProxyPassReverse  /  http://{{ jenkins_http_host }}:{{ jenkins_http_port }}/
-    ProxyPassReverse  /  http://{{ jenkins_http_host }}
     RequestHeader set X-Forwarded-Proto "https"
     RequestHeader set X-Forwarded-Port "443"
 </VirtualHost>

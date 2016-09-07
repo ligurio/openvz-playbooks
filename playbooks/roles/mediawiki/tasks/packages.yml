@@ -48,6 +48,7 @@
 #    - Rebuild localisation cache
 #    - Update mediawiki
 #    - Mediawiki submodule fileMode false
+  when: project == "openvz"
 
 #- name: install dependencies for mediawiki extensions with composer
 #  shell: cd /var/www/openvz-wiki/extensions/"{{item}}" && /usr/local/bin/composer.phar install
@@ -63,3 +64,4 @@
   sudo_user: mediawiki
 #  notify:
 #    - Mediawiki submodule fileMode false
+  when: project == "openvz"

@@ -46,7 +46,7 @@
   sudo: yes
 
 - name: setup crontab
-  cron: user="{{ doc_user }}" name="publish doc" minute="00" job="cd {{ path_doc_sources }} && git pull && make publish" cron_file=openvz-documentation-autoupdate
+  cron: user="{{ doc_user }}" name="publish doc" minute="00" job="bash -c \"cd {{ path_doc_sources }} && git pull && make publish\"" cron_file=openvz-documentation-autoupdate
   sudo: yes
 
 - name: copy the download http config file

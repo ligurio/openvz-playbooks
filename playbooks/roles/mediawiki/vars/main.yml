@@ -181,7 +181,7 @@ skins:
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-skins-MonoBook',
-    dest: 'skins/MonoBook',
+    dest: 'skins/MonoBookTemplate',
     version: 'REL1_24'
     }
   - {
@@ -193,6 +193,11 @@ skins:
     repo: 'https://github.com/wikimedia/mediawiki-skins-CologneBlue',
     dest: 'skins/CologneBlue',
     version: 'REL1_24'
+    }
+  - {
+    repo: 'https://github.com/DaSchTour/Cavendish',
+    dest: 'skins/Cavendish',
+    version: 'master'
     }
   - {
     repo: 'https://github.com/wikimedia/mediawiki-skins-Modern',
